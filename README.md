@@ -1,7 +1,3 @@
-# Contacts CSV
+# Finder
 
-A Firefox OS app to import contacts from CSV files. CSV files are produced when contacts are exported from feature phones.
-
-## Credits
-
- - [Papa Parse](http://papaparse.com)
+Search and find files on Firefox OS. This app lets you search for files on your Firefox OS device.
