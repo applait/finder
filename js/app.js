@@ -2,22 +2,21 @@ window.addEventListener('DOMContentLoaded', function() {
 
     'use strict';
 
-    var searchform = document.getElementById("searchform"),
-        searchbox = document.getElementById("searchbox"),
-        resultsbox = document.getElementById("resultsbox"),
-        finder = new Applait.Finder({type: "sdcard"});
+    var searchform = $("#searchform"),
+        searchbox = $("#searchbox"),
+        searchsubmit = $("#searchsubmit"),
+        resultsbox = $("#resultsbox"),
+        results = [],
+        finder = new Applait.Finder({type: "sdcard", minSearchLength: 2, debugMode: true});
 
     /**
      * Trigger search
      */
     var searchtrigger = function (event) {
-        event.preventDefault && event.preventDefault();
-        event.returnValue = false;
+        event.preventDefault();
 
-        searchbox.value = searchbox.value.trim();
-
-        finder.search(searchbox.value);
-
+        searchbox.val(searchbox.val().trim());
+        finder.search(searchbox.val());
     };
 
 
@@ -26,13 +25,12 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     finder.events.on("fileFound", function (file, fileinfo, storageName) {
-        var newelem = document.createElement("div");
-        newelem.innerHTML = "<p>" + fileinfo.name + "</p><small>" + fileinfo.path + "</small>";
-        resultsbox.appendChild(newelem);
+        results.push({ file: file, fileinfo: fileinfo, storageName: storageName });
     });
 
     finder.events.on("searchBegin", function (needle) {
-        resultsbox.innerHTML = "";
+        results = [];
+        resultsbox.html("");
     });
 
     finder.events.on("storageSearchBegin", function (storageName, needle) {
@@ -40,14 +38,44 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     finder.events.on("searchComplete", function (storageName, needle, filematchcount) {
-        resultsbox.innerHTML = "<p><strong>Files found in '" + storageName + "' storage: " + filematchcount +
-            "</strong></p>" + resultsbox.innerHTML;
+        results.length && results.forEach(function (result, i) {
+            var resultitem = $("<div></div>").attr({
+                "data-file" : result.file.name,
+                "data-type" : result.file.type,
+                "data-storage": result.storageName,
+                "data-result-index": i,
+                "class" : "resultitem panel"
+            });
+            resultitem.append($("<h4>" + result.fileinfo.name + "</h4><small>" + result.fileinfo.path + "</small>"));
+            resultsbox.append(resultitem);
+        });
+
+        $(".resultitem").bind("click", function (event) {
+            var activityname = "open";
+
+            if ($.inArray($(this).attr("data-type"), ["application/pdf"]) > -1) {
+                activityname = "view";
+            }
+
+            var activity = new MozActivity({
+                name: activityname,
+                data: {
+                    type: $(this).attr("data-type"),
+                    blob: results[$(this).attr("data-result-index")].file
+                }
+            });
+        });
     });
 
     /**
      * Bind search trigger to search form submit
      */
-    searchform.addEventListener("submit", searchtrigger, false);
-    searchform.querySelector("#searchsubmit").addEventListener("click", searchtrigger, false);
+    searchform.bind("submit", searchtrigger);
+    searchsubmit.bind("click", searchtrigger);
 
+    /**
+     * UI sweetness
+     */
+    $(document).foundation();
+    searchbox.focus();
 });

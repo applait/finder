@@ -1,44 +1,12 @@
-html, body {
-  margin: 0;
-  padding: 0.5rem;
+body {
   font-family: "Fira Sans", "Open Sans", sans;
 }
 
-body {
-  font-size: 1rem;
-  padding-top: 2.5rem;
-  background: #e7e7e7;
+.main-section {
+  margin-top: 15px;
+  min-height: 100vh;
 }
 
-p {
-  font-size: inherit;
-}
-
-#header-bar {
-  background-color: #008AED;
-  width: 100%;
-  height: 2.5rem;
-  margin: 0;
-  padding: 0;
-  top: 0;
-  left: 0;
-  position: fixed;
-}
-
-#header-bar h1 {
-  position: relative;
-  margin: 0 0 0 1rem;
-  font-weight: normal;
-}
-
-#searchform {
-  position: relative;
-}
-
-#searchform input[type="text"] {
-  height: 1.5em;
-  width: 95%;
-  font-size: 1.5em;
-  padding: 0.25rem 2.5%;
-  margin: 0;
+.resultitem {
+  word-wrap: break-word;
 }
