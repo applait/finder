@@ -19,9 +19,10 @@ window.addEventListener('DOMContentLoaded', function() {
      */
     navigator.mozSetMessageHandler('activity', function(activityRequest) {
         var option = activityRequest.source;
-        console.log(option);
+
         isactivity = true;
 
+        resetsearch();
         $("#menu-btn").html("&lt;");
         $("#menu-btn").unbind("click");
         $("#menu-btn").bind("click", function (event) {
@@ -82,6 +83,19 @@ window.addEventListener('DOMContentLoaded', function() {
         finder.search(searchbox.val());
     };
 
+    /**
+     * Reset search environment
+     */
+    var resetsearch = function () {
+        cleanupsearch();
+        stopprogress();
+        resultsbox.append($("<li><p class='hint'><em>Type your query in the Search box (e.g., <code>jpg</code>), and press <code>Go</code>.</em></p></li>"));
+        if (typeof $("x-flipbox").attr('flipped') !== "undefined") {
+            document.querySelector("x-flipbox").toggle();
+        }
+        searchbox.val("").focus();
+    };
+
 
     finder.events.addListener("searchCancelled", function () {
         cleanupsearch();
@@ -126,7 +140,6 @@ window.addEventListener('DOMContentLoaded', function() {
             });
 
             $(".resultitem").bind("click", function (event) {
-                console.log(isactivity);
                 if (isactivity) {
                     $(document).trigger("finderFilePicked", [results[$(this).attr("data-result-index")].file]);
                 } else {
@@ -162,6 +175,7 @@ window.addEventListener('DOMContentLoaded', function() {
      */
     searchform.bind("submit", searchtrigger);
     $(searchsubmit.selector + ".active").bind("click", searchtrigger);
+    resetsearch();
 
     /**
      * UI sweetness
@@ -175,8 +189,6 @@ window.addEventListener('DOMContentLoaded', function() {
 
     $("#reset-btn").bind("click", function (event) {
         event.preventDefault();
-        cleanupsearch();
-        stopprogress();
-        searchbox.val("").focus();
+        resetsearch();
     });
 });

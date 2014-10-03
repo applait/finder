@@ -114,8 +114,8 @@ x-appbar .button {
 }
 
 li > p:not(.resultitem) {
-  padding: 0.5em;
-  margin: 0.5em;
+  padding: 2em;
+  text-align: center;
 }
 
 .resultitem h4 {
@@ -153,4 +153,10 @@ p.lead {
 
 small {
   color: #707070;
+}
+
+code {
+  font-family: monospace;
+  font-stretch: expanded;
+  font-style: normal;
 }
