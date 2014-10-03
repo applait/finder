@@ -8,7 +8,31 @@ window.addEventListener('DOMContentLoaded', function() {
         resultsbox = $("#resultsbox"),
         wobblebar = $(".wobblebar"),
         results = [],
-        finder = new Applait.Finder({type: "sdcard", minSearchLength: 2, debugMode: true});
+        finder = new Applait.Finder({type: "sdcard", minSearchLength: 2});
+
+    var isactivity = false;
+
+    /**
+     * Now, handle activities
+     */
+    navigator.mozSetMessageHandler('activity', function(activityRequest) {
+        var option = activityRequest.source;
+        isactivity = true;
+
+        if (option.name === "pick") {
+            searchbox.focus();
+            $(document).on("finderFilePicked", function (event, filepicked) {
+                if (filepicked) {
+                    activityRequest.postResult({
+                        type: filepicked.type,
+                        blob: filepicked
+                    });
+                } else {
+                    activityRequest.postError("Unable to pick a file.");
+                }
+            });
+        }
+    });
 
     /**
      * Trigger search
@@ -53,19 +77,23 @@ window.addEventListener('DOMContentLoaded', function() {
         });
 
         $(".resultitem").bind("click", function (event) {
-            var activityname = "open";
+            if (isactivity) {
+                $(document).trigger("finderFilePicked", [results[$(this).attr("data-result-index")].file]);
+            } else {
+                var activityname = "open";
 
-            if ($.inArray($(this).attr("data-type"), ["application/pdf"]) > -1) {
-                activityname = "view";
-            }
-
-            var activity = new MozActivity({
-                name: activityname,
-                data: {
-                    type: $(this).attr("data-type"),
-                    blob: results[$(this).attr("data-result-index")].file
+                if ($.inArray($(this).attr("data-type"), ["application/pdf"]) > -1) {
+                    activityname = "view";
                 }
-            });
+
+                var activity = new MozActivity({
+                    name: activityname,
+                    data: {
+                        type: $(this).attr("data-type"),
+                        blob: results[$(this).attr("data-result-index")].file
+                    }
+                });
+            }
         });
 
         wobblebar.addClass("hide");

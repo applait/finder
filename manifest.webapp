@@ -1,28 +1,35 @@
 {
-  "version": "0.0.1",
-  "name": "Finder",
-  "description": "Search and pick files on the device",
-  "launch_path": "/index.html",
-  "icons": {
-      "16": "/img/icons/icon16x16.png",
-      "32": "/img/icons/icon32x32.png",
-      "48": "/img/icons/icon48x48.png",
-      "60": "/img/icons/icon60x60.png",
-      "128": "/img/icons/icon128x128.png",
-      "512": "/img/icons/icon512x512.png"  
-  },
-  "developer": {
-    "name": "Applait",
-    "url": "http://applait.com"
-  },
-  "type": "privileged",
-  "permissions": {
-    "device-storage:sdcard": {
-      "access": "readonly"
+    "version": "0.0.1",
+    "name": "Finder",
+    "description": "Search and pick files on the device",
+    "launch_path": "/index.html",
+    "icons": {
+        "16": "/img/icons/icon16x16.png",
+        "32": "/img/icons/icon32x32.png",
+        "48": "/img/icons/icon48x48.png",
+        "60": "/img/icons/icon60x60.png",
+        "128": "/img/icons/icon128x128.png",
+        "512": "/img/icons/icon512x512.png"
+    },
+    "developer": {
+        "name": "Applait",
+        "url": "http://applait.com"
+    },
+    "type": "privileged",
+    "permissions": {
+        "device-storage:sdcard": {
+            "access": "readonly"
+        }
+    },
+    "installs_allowed_from": [
+        "*"
+    ],
+    "default_locale": "en",
+    "activities": {
+        "pick": {
+            "href": "./index.html",
+            "disposition": "inline",
+            "returnValue": true
+        }
     }
-  },
-  "installs_allowed_from": [
-    "*"
-  ],
-  "default_locale": "en"
 }
