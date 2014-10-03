@@ -168,6 +168,6 @@ window.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
         cleanupsearch();
         stopprogress();
-        searchbox.val("");;
+        searchbox.val("").focus();
     });
 });
