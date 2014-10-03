@@ -5,6 +5,15 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Fira Sans Light", "Fira Sans", "Open Sans", "Helvetica Neue", sans-serif;
+  font-weight: normal;
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: 0;
+  margin-right: 0;
+}
+
 x-appbar.sticky {
   position: absolute;
   top: 0;
@@ -102,9 +111,19 @@ x-flipbox {
   animation-iteration-count: 0;
 }
 
-li > p {
+.menu > * {
   margin: 0.3em;
   padding: 0.3em;
+}
+
+.menu h2, .menu h3 {
+  padding-bottom: 5px;
+  margin-bottom: 5px;
+  border-bottom: 1px solid #ccc;
+}
+
+p.lead {
+  font-size: 1.25em;
 }
 
 small {
