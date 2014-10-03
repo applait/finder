@@ -1,5 +1,5 @@
 {
-    "version": "0.0.1",
+    "version": "1.0.0",
     "name": "Finder",
     "description": "Search and pick files on the device",
     "launch_path": "/index.html",
