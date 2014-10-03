@@ -102,6 +102,11 @@ x-flipbox {
   animation-iteration-count: 0;
 }
 
+li > p {
+  margin: 0.3em;
+  padding: 0.3em;
+}
+
 small {
   color: #707070;
 }

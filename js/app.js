@@ -8,7 +8,9 @@ window.addEventListener('DOMContentLoaded', function() {
         resultsbox = $("#resultsbox"),
         wobblebar = $(".wobblebar"),
         results = [],
-        finder = new Applait.Finder({type: "sdcard", minSearchLength: 2});
+        finder = new Applait.Finder({type: "sdcard", minSearchLength: 2}),
+        searchcompletecount = 0,
+        totalfilematchcount = 0;
 
     var isactivity = false;
 
@@ -57,6 +59,8 @@ window.addEventListener('DOMContentLoaded', function() {
     finder.events.on("searchBegin", function (needle) {
         results = [];
         resultsbox.html("");
+        searchcompletecount = 0;
+        totalfilematchcount = 0;
     });
 
     finder.events.on("storageSearchBegin", function (storageName, needle) {
@@ -96,7 +100,17 @@ window.addEventListener('DOMContentLoaded', function() {
             }
         });
 
-        wobblebar.addClass("hide");
+
+        searchcompletecount++;
+        totalfilematchcount += filematchcount;
+        if (searchcompletecount >= finder.storages.length) {
+            wobblebar.addClass("hide");
+            if(!totalfilematchcount) {
+                resultsbox.append($("<li><p><em>No results found.</em></p></li>"));
+            }
+            searchcompletecount = 0;
+            totalfilematchcount = 0;
+        }
     });
 
     /**
@@ -121,5 +135,8 @@ window.addEventListener('DOMContentLoaded', function() {
         results = [];
         resultsbox.html("");
         searchbox.focus();
+        searchcompletecount = 0;
+        totalfilematchcount = 0;
+        wobblebar.addClass("hide");
     });
 });
