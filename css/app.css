@@ -26,7 +26,14 @@ x-flipbox {
   padding: 20px;
   top: 45px;
   left: 0;
-  overflow: auto;
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+x-appbar .button {
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 0.8em;
 }
 
 #searchform-inner {
@@ -61,6 +68,10 @@ x-flipbox {
   text-indent: 10px;
 }
 
+#searchbox:disabled {
+  color: #999;
+}
+
 #searchsubmit {
   display: block;
   width: 100%;
@@ -69,10 +80,14 @@ x-flipbox {
   text-align: center;
   text-decoration: none;
   background-color: #04B309;
-  color: #fff;
+  color: #d6d6d6;
   outline: 0;
   border: 1px solid #038207;
   border-radius: 0;
+}
+
+#searchsubmit.active {
+  color: #fff;
 }
 
 #resultsbox {
@@ -91,6 +106,11 @@ x-flipbox {
 
 .resultitem:focus {
   border-color: #0095DD;
+}
+
+li > p:not(.resultitem) {
+  padding: 0.5em;
+  margin: 0.5em;
 }
 
 .resultitem h4 {

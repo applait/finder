@@ -37,6 +37,34 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     /**
+     * Clean up artefacts to clear up memory
+     */
+    var cleanupsearch = function () {
+        results = [];
+        resultsbox.html("");
+        searchcompletecount = 0;
+        totalfilematchcount = 0;
+    };
+
+    /**
+     * Interactions when search has started
+     */
+    var startprogress = function () {
+        searchbox.attr('disabled', 'disabled');
+        searchsubmit.removeClass('active');
+        wobblebar.removeClass("hide");
+    };
+
+    /**
+     * Interactions when search has ended
+     */
+    var stopprogress = function () {
+        searchbox.removeAttr('disabled');
+        searchsubmit.addClass('active');
+        wobblebar.addClass("hide");
+    };
+
+    /**
      * Trigger search
      */
     var searchtrigger = function (event) {
@@ -47,8 +75,17 @@ window.addEventListener('DOMContentLoaded', function() {
     };
 
 
-    finder.events.addListener("empty", function (needle) {
+    finder.events.addListener("searchCancelled", function () {
+        cleanupsearch();
+        stopprogress();
+        searchbox.focus();
         wobblebar.addClass("hide");
+    });
+
+    finder.events.addListener("empty", function (needle) {
+        cleanupsearch();
+        stopprogress();
+        searchbox.focus();
         resultsbox.append($("<li><p><em>No results found.</em></p></li>"));
     });
 
@@ -57,57 +94,55 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     finder.events.on("searchBegin", function (needle) {
-        results = [];
-        resultsbox.html("");
-        searchcompletecount = 0;
-        totalfilematchcount = 0;
-    });
-
-    finder.events.on("storageSearchBegin", function (storageName, needle) {
-        wobblebar.removeClass("hide");
+        cleanupsearch();
+        startprogress();
     });
 
     finder.events.on("searchComplete", function (storageName, needle, filematchcount) {
-        results.length && results.forEach(function (result, i) {
-            var resultitem = $("<li></li>").attr({
-                "data-file" : result.file.name,
-                "data-type" : result.file.type,
-                "data-storage": result.storageName,
-                "data-result-index": i,
-                "class" : "resultitem panel"
-            });
-            resultitem.append($("<h4>" + result.fileinfo.name + "</h4><small>" + result.fileinfo.path + "</small>"));
-            resultsbox.append(resultitem);
-        });
-
-        $(".resultitem").bind("click", function (event) {
-            if (isactivity) {
-                $(document).trigger("finderFilePicked", [results[$(this).attr("data-result-index")].file]);
-            } else {
-                var activityname = "open";
-
-                if ($.inArray($(this).attr("data-type"), ["application/pdf"]) > -1) {
-                    activityname = "view";
-                }
-
-                var activity = new MozActivity({
-                    name: activityname,
-                    data: {
-                        type: $(this).attr("data-type"),
-                        blob: results[$(this).attr("data-result-index")].file
-                    }
-                });
-            }
-        });
-
 
         searchcompletecount++;
         totalfilematchcount += filematchcount;
+
         if (searchcompletecount >= finder.storages.length) {
-            wobblebar.addClass("hide");
+
+            results.length && results.forEach(function (result, i) {
+                var resultitem = $("<li></li>").attr({
+                    "data-file" : result.file.name,
+                    "data-type" : result.file.type,
+                    "data-storage": result.storageName,
+                    "data-result-index": i,
+                    "class" : "resultitem panel"
+                });
+                resultitem.append($("<h4>" + result.fileinfo.name + "</h4><small>" + result.fileinfo.path + "</small>"));
+                resultsbox.append(resultitem);
+            });
+
+            $(".resultitem").bind("click", function (event) {
+                if (isactivity) {
+                    $(document).trigger("finderFilePicked", [results[$(this).attr("data-result-index")].file]);
+                } else {
+                    var activityname = "open";
+
+                    if ($.inArray($(this).attr("data-type"), ["application/pdf"]) > -1) {
+                        activityname = "view";
+                    }
+
+                    var activity = new MozActivity({
+                        name: activityname,
+                        data: {
+                            type: $(this).attr("data-type"),
+                            blob: results[$(this).attr("data-result-index")].file
+                        }
+                    });
+                }
+            });
+
+            stopprogress();
+
             if(!totalfilematchcount) {
                 resultsbox.append($("<li><p><em>No results found.</em></p></li>"));
             }
+
             searchcompletecount = 0;
             totalfilematchcount = 0;
         }
@@ -117,7 +152,7 @@ window.addEventListener('DOMContentLoaded', function() {
      * Bind search trigger to search form submit
      */
     searchform.bind("submit", searchtrigger);
-    searchsubmit.bind("click", searchtrigger);
+    $(searchsubmit.selector + ".active").bind("click", searchtrigger);
 
     /**
      * UI sweetness
@@ -131,12 +166,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
     $("#reset-btn").bind("click", function (event) {
         event.preventDefault();
-        searchbox.val("");
-        results = [];
-        resultsbox.html("");
-        searchbox.focus();
-        searchcompletecount = 0;
-        totalfilematchcount = 0;
-        wobblebar.addClass("hide");
+        cleanupsearch();
+        stopprogress();
+        searchbox.val("");;
     });
 });

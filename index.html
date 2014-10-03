@@ -5,7 +5,7 @@
     <title>Finder</title>
     <meta name="description" content="Search and pick files from device">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
     <link rel="stylesheet" type="text/css" href="css/normalize.css">
     <link rel="stylesheet" type="text/css" href="css/brick.css">
@@ -16,19 +16,19 @@
   <body>
 
     <x-appbar>
-      <button id="menu-btn">≡</button>
+      <button id="menu-btn" class="button">≡</button>
       <h1>Finder</h1>
-      <button id="reset-btn">Reset</button>
+      <button id="reset-btn" class="button">Reset</button>
     </x-appbar>
     <x-flipbox>
       <div class="main-content">
         <form id="searchform">
           <div id="searchform-inner">
             <div id="searchbox-wrapper">
-              <input id="searchbox" type="text" placeholder="Search..." maxlength="20" required>
+              <input id="searchbox" type="text" placeholder="Search..." maxlength="20">
             </div>
             <div id="searchsubmit-wrapper">
-              <a id="searchsubmit" class="button" href="#">Go</a>
+              <a id="searchsubmit" class="button active" href="#">Go</a>
             </div>
           </div>
         </form>
