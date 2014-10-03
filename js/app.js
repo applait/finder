@@ -6,6 +6,7 @@ window.addEventListener('DOMContentLoaded', function() {
         searchbox = $("#searchbox"),
         searchsubmit = $("#searchsubmit"),
         resultsbox = $("#resultsbox"),
+        wobblebar = $(".wobblebar"),
         results = [],
         finder = new Applait.Finder({type: "sdcard", minSearchLength: 2, debugMode: true});
 
@@ -15,13 +16,14 @@ window.addEventListener('DOMContentLoaded', function() {
     var searchtrigger = function (event) {
         event.preventDefault();
 
-        searchbox.val(searchbox.val().trim());
+        searchbox.val(searchbox.val().trim()).blur();
         finder.search(searchbox.val());
     };
 
 
     finder.events.addListener("empty", function (needle) {
-        // TODO: add handler for empty storage
+        wobblebar.addClass("hide");
+        resultsbox.append($("<li><p><em>No results found.</em></p></li>"));
     });
 
     finder.events.on("fileFound", function (file, fileinfo, storageName) {
@@ -34,12 +36,12 @@ window.addEventListener('DOMContentLoaded', function() {
     });
 
     finder.events.on("storageSearchBegin", function (storageName, needle) {
-        // TODO: add handler for storage search
+        wobblebar.removeClass("hide");
     });
 
     finder.events.on("searchComplete", function (storageName, needle, filematchcount) {
         results.length && results.forEach(function (result, i) {
-            var resultitem = $("<div></div>").attr({
+            var resultitem = $("<li></li>").attr({
                 "data-file" : result.file.name,
                 "data-type" : result.file.type,
                 "data-storage": result.storageName,
@@ -65,6 +67,8 @@ window.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+
+        wobblebar.addClass("hide");
     });
 
     /**
@@ -76,6 +80,18 @@ window.addEventListener('DOMContentLoaded', function() {
     /**
      * UI sweetness
      */
-    $(document).foundation();
     searchbox.focus();
+    $("#menu-btn").bind("click", function (event) {
+        event.preventDefault();
+        searchbox.blur();
+        document.querySelector("x-flipbox").toggle();
+    });
+
+    $("#reset-btn").bind("click", function (event) {
+        event.preventDefault();
+        searchbox.val("");
+        results = [];
+        resultsbox.html("");
+        searchbox.focus();
+    });
 });
