@@ -36,6 +36,11 @@ x-appbar .button {
   font-size: 0.8em;
 }
 
+#menu-btn {
+  font-weight: bold;
+  font-size: 1.4em;
+}
+
 #searchform-inner {
   width: 100%;
   height: 45px;

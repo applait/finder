@@ -19,7 +19,15 @@ window.addEventListener('DOMContentLoaded', function() {
      */
     navigator.mozSetMessageHandler('activity', function(activityRequest) {
         var option = activityRequest.source;
+        console.log(option);
         isactivity = true;
+
+        $("#menu-btn").html("&lt;");
+        $("#menu-btn").unbind("click");
+        $("#menu-btn").bind("click", function (event) {
+            event.preventDefault();
+            activityRequest.postError("Pick cancelled.");
+        });
 
         if (option.name === "pick") {
             searchbox.focus();
@@ -118,6 +126,7 @@ window.addEventListener('DOMContentLoaded', function() {
             });
 
             $(".resultitem").bind("click", function (event) {
+                console.log(isactivity);
                 if (isactivity) {
                     $(document).trigger("finderFilePicked", [results[$(this).attr("data-result-index")].file]);
                 } else {
