@@ -27,7 +27,7 @@
     "activities": {
         "pick": {
             "href": "./index.html",
-            "disposition": "inline",
+            "disposition": "window",
             "returnValue": true
         }
     }
