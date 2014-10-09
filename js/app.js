@@ -143,6 +143,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
             $(".resultitem .resultitem-item").bind("click", function (event) {
                 var parent = $(this).parent();
+                $(".resultitem").removeClass("active");
+                parent.addClass("active");
                 if (isactivity) {
                     $(document).trigger("finderFilePicked", [results[parent.attr("data-result-index")].file]);
                 }
@@ -150,7 +152,10 @@ window.addEventListener('DOMContentLoaded', function() {
 
             $(".resultitem .resultitem-preview").bind("click", function (event) {
                 var activityname = "open",
-                    parent = $(this).parent();;
+                    parent = $(this).parent();
+
+                $(".resultitem").removeClass("active");
+                parent.addClass("active");
 
                 if ($.inArray(parent.attr("data-type"), ["application/pdf"]) > -1) {
                     activityname = "view";

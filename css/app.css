@@ -112,6 +112,16 @@ x-appbar .button {
   flex: 1;
 }
 
+.resultitem.active {
+  background-color: #0095DD;
+  color: #ffffff;
+  transition: all 100ms ease-in-out;
+}
+
+.resultitem.active .folderpath {
+  color: #cccccc;
+}
+
 .resultitem:focus {
   border-color: #0095DD;
 }
