@@ -106,7 +106,7 @@ x-appbar .button {
 .resultitem {
   word-wrap: break-word;
   background-color: #f2f2f2;
-  border: 1px solid #ebebeb;
+  border-bottom: 1px solid #ebebeb;
   margin: 0;
   display: flex;
   flex: 1;
@@ -126,9 +126,15 @@ x-appbar .button {
   border-color: #0095DD;
 }
 
-li > p:not(.resultitem) {
+#resultsbox li > p {
   padding: 2em;
   text-align: center;
+}
+
+#resultsbox li.status > p {
+  padding: 0;
+  margin: 0 0 0.6rem 0.6rem;
+  text-align: left;
 }
 
 .resultitem .col {

@@ -117,6 +117,8 @@ window.addEventListener('DOMContentLoaded', function() {
 
     finder.events.on("searchBegin", function (needle) {
         cleanupsearch();
+        resultsbox.append($("<li><p>Searching for <code>" + needle + "</code><br>" +
+                            "This may take some time...</p></li>"));
         startprogress();
     });
 
@@ -126,6 +128,13 @@ window.addEventListener('DOMContentLoaded', function() {
         totalfilematchcount += filematchcount;
 
         if (searchcompletecount >= finder.storages.length) {
+
+            if (isactivity) {
+                resultsbox.html("<li class='status'><p><em>" + totalfilematchcount + " file(s) matched. " +
+                                "[Hint: Tap to pick.]</em></p></li>");
+            } else {
+                resultsbox.html("<li class='status'><p><em>" + totalfilematchcount + " file(s) matched</em></p></li>");
+            }
 
             results.length && results.forEach(function (result, i) {
                 var resultitem = $("<li></li>").attr({
@@ -173,7 +182,7 @@ window.addEventListener('DOMContentLoaded', function() {
             stopprogress();
 
             if(!totalfilematchcount) {
-                resultsbox.append($("<li><p><em>No results found.</em></p></li>"));
+                resultsbox.html($("<li><p><em>No results found.</em></p></li>"));
             }
 
             searchcompletecount = 0;
