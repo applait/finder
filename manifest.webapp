@@ -16,7 +16,8 @@
     "type": "privileged",
     "permissions": {
         "device-storage:sdcard": {
-            "access": "readonly"
+            "access": "readonly",
+            "description": "Search files from the sdcard"
         }
     },
     "installs_allowed_from": [
