@@ -99,14 +99,17 @@ x-appbar .button {
   list-style-type: none;
   margin: 0;
   padding: 0;
+  display: flex;
+  flex-direction: column;
 }
 
 .resultitem {
   word-wrap: break-word;
   background-color: #f2f2f2;
   border: 1px solid #ebebeb;
-  margin: 0.3em;
-  padding: 0.3em;
+  margin: 0;
+  display: flex;
+  flex: 1;
 }
 
 .resultitem:focus {
@@ -118,10 +121,34 @@ li > p:not(.resultitem) {
   text-align: center;
 }
 
+.resultitem .col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.resultitem .resultitem-item {
+  flex: 1 1 80%;
+}
+
+.resultitem .resultitem-preview {
+  background-color: #333333;
+  color: #fefefe;
+  text-align: center;
+  flex: 1 1 20%;
+  justify-content: center;
+}
+
 .resultitem h4 {
-  padding: 0;
+  padding: 0.6rem 0 0 0.6rem;
   margin: 0;
   font-weight: normal;
+}
+
+.resultitem .folderpath {
+  margin: 0;
+  padding: 0 0 0.6rem 0.6rem;
+  color: #707070;
 }
 
 .wobblebar {
@@ -151,8 +178,8 @@ p.lead {
   font-size: 1.25em;
 }
 
-small {
-  color: #707070;
+.small {
+  font-size: 0.75em;
 }
 
 code {

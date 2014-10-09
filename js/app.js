@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', function() {
         resultsbox = $("#resultsbox"),
         wobblebar = $(".wobblebar"),
         results = [],
-        finder = new Applait.Finder({type: "sdcard", minSearchLength: 2}),
+        finder = new Applait.Finder({type: "sdcard", minSearchLength: 2, debugMode: true}),
         searchcompletecount = 0,
         totalfilematchcount = 0;
 
@@ -135,28 +135,34 @@ window.addEventListener('DOMContentLoaded', function() {
                     "data-result-index": i,
                     "class" : "resultitem panel"
                 });
-                resultitem.append($("<h4>" + result.fileinfo.name + "</h4><small>" + result.fileinfo.path + "</small>"));
+                resultitem.append($("<div class='resultitem-item col'><h4>" + result.fileinfo.name + "</h4>" +
+                                    "<p class='small folderpath'>" + result.fileinfo.path + "</p></div>"));
+                resultitem.append($("<div class='resultitem-preview col'><p>View</p></div>"));
                 resultsbox.append(resultitem);
             });
 
-            $(".resultitem").bind("click", function (event) {
+            $(".resultitem .resultitem-item").bind("click", function (event) {
+                var parent = $(this).parent();
                 if (isactivity) {
-                    $(document).trigger("finderFilePicked", [results[$(this).attr("data-result-index")].file]);
-                } else {
-                    var activityname = "open";
-
-                    if ($.inArray($(this).attr("data-type"), ["application/pdf"]) > -1) {
-                        activityname = "view";
-                    }
-
-                    var activity = new MozActivity({
-                        name: activityname,
-                        data: {
-                            type: $(this).attr("data-type"),
-                            blob: results[$(this).attr("data-result-index")].file
-                        }
-                    });
+                    $(document).trigger("finderFilePicked", [results[parent.attr("data-result-index")].file]);
                 }
+            });
+
+            $(".resultitem .resultitem-preview").bind("click", function (event) {
+                var activityname = "open",
+                    parent = $(this).parent();;
+
+                if ($.inArray(parent.attr("data-type"), ["application/pdf"]) > -1) {
+                    activityname = "view";
+                }
+
+                var activity = new MozActivity({
+                    name: activityname,
+                    data: {
+                        type: parent.attr("data-type"),
+                        blob: results[parent.attr("data-result-index")].file
+                    }
+                });
             });
 
             stopprogress();
