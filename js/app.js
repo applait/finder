@@ -8,7 +8,7 @@ window.addEventListener('DOMContentLoaded', function() {
         resultsbox = $("#resultsbox"),
         wobblebar = $(".wobblebar"),
         results = [],
-        finder = new Applait.Finder({type: "sdcard", minSearchLength: 2, debugMode: true}),
+        finder = new Applait.Finder({type: "sdcard", minSearchLength: 2}),
         searchcompletecount = 0,
         totalfilematchcount = 0;
 
