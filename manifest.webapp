@@ -1,7 +1,7 @@
 {
     "version": "1.1.0",
     "name": "Finder",
-    "description": "Search and pick files on the device",
+    "description": "File search and file picker app for Firefox OS",
     "launch_path": "/index.html",
     "icons": {
         "48": "/img/icons/48.png",
