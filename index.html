@@ -1,60 +1,48 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Finder</title>
-    <meta name="description" content="Search and pick files from device">
+    <head>
+        <meta charset="utf-8">
+        <title>Finder</title>
+        <meta name="description" content="Search and pick files from device">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
-    <link rel="stylesheet" type="text/css" href="css/normalize.css">
-    <link rel="stylesheet" type="text/css" href="css/brick.css">
-    <link rel="stylesheet" type="text/css" href="css/wobblebar.css">
-    <link rel="stylesheet" type="text/css" href="css/app.css">
-  </head>
+        <link rel="stylesheet" type="text/css" href="css/fontello/css/animation.css">
+        <link rel="stylesheet" type="text/css" href="css/fontello/css/iconpack.css">
+        <link rel="stylesheet" type="text/css" href="css/app.css">
+    </head>
 
-  <body>
+    <body class="has-bottomnav">
 
-    <x-appbar>
-      <button id="menu-btn" class="button">≡</button>
-      <h1>Finder</h1>
-      <button id="reset-btn" class="button">Reset</button>
-    </x-appbar>
-    <x-flipbox>
-      <div class="main-content">
-        <form id="searchform">
-          <div id="searchform-inner">
-            <div id="searchbox-wrapper">
-              <input id="searchbox" type="text" placeholder="Search..." maxlength="20">
-            </div>
-            <div id="searchsubmit-wrapper">
-              <a id="searchsubmit" class="button active" href="#">Go</a>
-            </div>
-          </div>
-        </form>
-        <div class="wobblebar hide">Loading...</div>
-        <ul id="resultsbox"></ul>
-      </div>
-      <div class="menu">
-        <h2>About</h2>
-        <p class="lead">Finder is a file search and file picker utility for Firefox OS.</p>
-        <p>Finder is in an experimental stage now. If you find any
-          bugs with Finder, or if you have any suggestions, please file
-          them in the <a href="http://github.com/applait/finder/issues" target="_blank">Finder
-          issue queue</a>.</p>
-        <h2>Credits</h2>
-        <p id="credits">
-          Made with love, by <a href="http://applait.io/" target="_blank">applait</a>.
-        </p>
-        <p>Powered by <a href="http://github.com/applait/finderjs" target="_blank">FinderJS</a>.</p>
-      </div>
-    </x-flipbox>
+        <article id="main">
+            <section>
+                <form id="searchform" role="form" class="form-large">
+                    <input type="text" id="searchinput" class="form-field"
+                           placeholder="Search..." maxlength="20">
+                    <button id="searchsubmit" class="button-submit action">
+                        <i class="icon-search"></i>
+                    </button>
+                </form>
+            </section>
+        </article>
 
-    <script type="text/javascript" src="js/libs/jquery.js"></script>
-    <script type="text/javascript" src="js/libs/brick.js"></script>
-    <script type="text/javascript" src="js/libs/EventEmitter.min.js"></script>
-    <script type="text/javascript" src="js/libs/applait.finder.js"></script>
-    <script type="text/javascript" src="js/app.js"></script>
-  </body>
+        <nav id="bottomnav">
+            <button id="resetbtn">Reset</button>
+            <button id="aboutbtn" class="pull-right">
+                <i class="icon-help"></i>
+            </button>
+        </nav>
+
+        <!-- dependencies -->
+        <script type="text/javascript" src="js/libs/jquery.js"></script>
+        <script type="text/javascript" src="js/libs/riot.js"></script>
+        <script type="text/javascript" src="js/libs/EventEmitter.js"></script>
+        <script type="text/javascript" src="js/libs/applait.finder.js"></script>
+
+        <!-- app scripts -->
+        <script type="text/javascript" src="js/findermodel.js"></script>
+        <script type="text/javascript" src="js/extend.js"></script>
+        <script type="text/javascript" src="js/init.js"></script>
+    </body>
 
 </html>
