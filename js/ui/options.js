@@ -6,8 +6,9 @@
         var resetbtn = document.querySelector("#resetbtn");
 
         resetbtn.addEventListener("click", function () {
-            api.args.searchinput.value = "";
             api.reset();
+            api.args.searchinput.value = "";
+            api.args.searchinput.focus();
         }, false);
 
     });
