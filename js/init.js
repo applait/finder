@@ -5,6 +5,7 @@ window.addEventListener("DOMContentLoaded", function () {
     app({
         page: location.hash.slice(2),
         root: document.querySelector("body"),
+        searchinput: document.querySelector("#searchinput"),
         debug: true
     });
 
