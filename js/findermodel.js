@@ -10,8 +10,15 @@ var FinderModel = function (arg) {
     // Assign `this` through `riot.observable()`
     var self = riot.observable(this);
 
+    // Store args
+    self.args = arg;
+
     // Create an instance of `Applait.Finder`
-    self.finder = new Applait.Finder({ type: "sdcard", minSearchLength: 2, debugMode: arg.debug });
+    self.finder = new Applait.Finder({
+        type: "sdcard",
+        minSearchLength: 2,
+        debugMode: arg.debug
+    });
 
     // Current search results
     self.searchResults = [];
@@ -21,6 +28,7 @@ var FinderModel = function (arg) {
      */
     self.reset = function () {
         self.searchResults = [];
+        self.finder.reset();
     };
 
     /**
@@ -28,16 +36,30 @@ var FinderModel = function (arg) {
      *
      * @param {string} key - The search string
      */
-    self.on("search", function (key) {
+    self.search = function (key) {
         self.reset();
         self.finder.search(key);
-    });
+    };
 
+    /**
+     * Subscribe to Finder's fileFound event
+     */
     self.finder.on("fileFound", function (file) {
         self.searchResults.push(file);
     });
 
+    /**
+     * Subscribe to Finder's searchComplete event
+     *
+     * The `resultsFound` is triggered if any file is matched.
+     * Else, `noResults` is triggered
+     */
     self.finder.on("searchComplete", function () {
-        console.log("files found after searchComplete", self.searchResults);
+        if (self.searchResults.length && self.finder.filematchcount) {
+            self.trigger("resultsFound", self.searchResults, self.finder.searchkey);
+        } else {
+            self.trigger("noResults", self.finder.searchkey);
+        }
     });
+
 };
