@@ -9,5 +9,9 @@
             api.reset();
         }, false);
 
+        // Perform additional UI cleanup when reset is called
+        api.on("reset", function () {
+            api.args.searchinput.value = "";
+        });
     });
 })();
