@@ -29,6 +29,7 @@ var FinderModel = function (arg) {
     self.reset = function () {
         self.searchResults = [];
         self.finder.reset();
+        self.trigger("reset");
     };
 
     /**
@@ -56,9 +57,9 @@ var FinderModel = function (arg) {
      */
     self.finder.on("searchComplete", function () {
         if (self.searchResults.length && self.finder.filematchcount) {
-            self.trigger("resultsFound", self.searchResults, self.finder.searchkey);
+            self.trigger("resultsFound");
         } else {
-            self.trigger("noResults", self.finder.searchkey);
+            self.trigger("noResults");
         }
     });
 
