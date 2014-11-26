@@ -29,7 +29,6 @@ var FinderModel = function (arg) {
     self.reset = function () {
         self.searchResults = [];
         self.finder.reset();
-        self.trigger("reset");
     };
 
     /**
