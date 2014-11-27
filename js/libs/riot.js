@@ -64,16 +64,20 @@ function default_escape_fn(str, key) {
   });
 }
 
+// Patch riot.render based on https://github.com/muut/riotjs/issues/103#issuecomment-40866114
 riot.render = function(tmpl, data, escape_fn) {
-  if (escape_fn === true) escape_fn = default_escape_fn;
-  tmpl = tmpl || '';
+    if (escape_fn === true) escape_fn = default_escape_fn;
+    tmpl = tmpl || '';
 
-  return (FN[tmpl] = FN[tmpl] || new Function("_", "e", "return '" +
-    tmpl.replace(/[\\\n\r']/g, function(char) {
-      return template_escape[char];
-    }).replace(/{\s*([\w\.]+)\s*}/g, "' + (e?e(_.$1,'$1'):_.$1||(_.$1==null?'':_.$1)) + '") + "'")
-  )(data, escape_fn);
+    return tmpl.replace(/{\s*([\w\.]+)\s*}/g, function(k, v) {
+        var p = v.split(".");
+        var t = data[p[0]];
+        if (t === undefined || t === null) return '';
+        for (var i = 1; i < p.length; i++) t = t[p[i]];
+        return (escape_fn ? escape_fn(t, v) : t || (t === undefined || t === null ? '': t));
+    });
 };
+// -- End patch -- //
 /* Cross browser popstate */
 (function () {
   // for browsers only
