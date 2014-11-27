@@ -26,6 +26,17 @@
             api.load(path.substr(2));
         });
 
+        /**
+         * Before load hook for views
+         */
+        api.on("before:load", function (next) {
+            var prev = document.querySelector("#" + api.view);
+            next = document.querySelector("#" + next);
+
+            prev && prev.classList.remove("active-view");
+            next && next.classList.add("active-view");
+        });
+
     });
 
 })();

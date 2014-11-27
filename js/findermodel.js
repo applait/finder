@@ -13,6 +13,9 @@ var FinderModel = function (arg) {
     // Store args
     self.args = arg;
 
+    // Store current view id. Default "home".
+    self.view = "home";
+
     // Create an instance of `Applait.Finder`
     self.finder = new Applait.Finder({
         type: "sdcard",
@@ -66,6 +69,10 @@ var FinderModel = function (arg) {
      * Provide a generic "load" method for routing
      */
     self.load = function (path) {
+        self.trigger("before:load", path);
         self.trigger("load:" + path);
+        self.view = path;
     };
+
+
 };
