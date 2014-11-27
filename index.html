@@ -12,17 +12,19 @@
         <link rel="stylesheet" type="text/css" href="css/app.css">
     </head>
 
-    <body class="has-bottomnav">
+    <body class="has-topnav has-bottomnav">
+
+        <nav id="topnav">
+            <input type="text" id="topnav-input" placeholder="Search..." maxlength="16">
+            <div id="topnav-divider">&nbsp;</div>
+            <button id="searchbtn">
+                <i class="icon-search"></i>
+            </button>
+        </nav>
 
         <article id="home" class="active-view">
             <section>
-                <form id="searchform" role="form" class="form-large">
-                    <input type="text" id="searchinput" class="form-field"
-                           placeholder="Search..." maxlength="20">
-                    <button id="searchsubmit" class="button-submit action">
-                        <i class="icon-search"></i>
-                    </button>
-                </form>
+                <p>Search something up there...</p>
             </section>
         </article>
 
