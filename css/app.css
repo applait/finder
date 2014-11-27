@@ -57,11 +57,6 @@ nav#topnav {
   box-shadow: 0 0.05rem 0.075rem #ededed;
 }
 
-nav#bottomnav {
-  border-top: 0.05rem solid #ededed;
-  box-shadow: 0 -0.05rem 0.075rem #ededed;
-}
-
 input[type="text"], button {
   background: #fefefe;
   color: #333333;
@@ -92,7 +87,7 @@ nav {
   position: absolute;
   left: 0;
   right: 0;
-  padding: 1rem;
+  padding: 0;
 }
 
 nav#topnav {
@@ -161,7 +156,7 @@ form {
 }
 
 input[type="text"], button {
-  height: 2.5rem;
+  height: 3rem;
   line-height: 1rem;
   font-size: 1rem;
   padding: 0.5rem;
@@ -184,4 +179,8 @@ input[type="text"], button {
 .form-large button {
   width: 20vw;
   margin-left: -0.4rem;
+}
+
+#resetbtn {
+  flex-grow: 1;
 }
