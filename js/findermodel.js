@@ -62,4 +62,10 @@ var FinderModel = function (arg) {
         }
     });
 
+    /**
+     * Provide a generic "load" method for routing
+     */
+    self.load = function (path) {
+        self.trigger("load:" + path);
+    };
 };
