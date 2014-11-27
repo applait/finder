@@ -5,7 +5,7 @@ window.addEventListener("DOMContentLoaded", function () {
     app({
         path: location.hash ? location.hash.slice(2) : "home",
         root: document.querySelector("body"),
-        searchinput: document.querySelector("#searchinput"),
+        searchinput: document.querySelector("#topnav-input"),
         debug: true
     });
 
