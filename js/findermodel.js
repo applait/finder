@@ -61,7 +61,7 @@ var FinderModel = function (arg) {
         if (self.searchResults.length && self.finder.filematchcount) {
             self.trigger("resultsFound");
         } else {
-            self.trigger("noResults");
+            self.trigger("noResults", self.finder.searchkey);
         }
     });
 
