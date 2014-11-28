@@ -95,18 +95,8 @@ nav {
   color: #505050;
 }
 
-#topnav {
-  top: 0;
-  border-top: 0.2rem solid #2ecc71;
-}
-
-#bottomnav {
-  bottom: 0;
-}
-
-#topnav > * {
+nav > * {
   height: 3rem;
-  font-size: 1.25rem;
   border: none;
   outline: none;
 }
@@ -118,6 +108,28 @@ nav h1 {
   flex-grow: 1;
   text-indent: 1rem;
   line-height: 3rem;
+}
+
+nav button:hover, nav button:focus {
+  border: none;
+}
+
+nav #resetbtn {
+  flex-grow: 1;
+}
+
+#topnav {
+  top: 0;
+  border-top: 0.2rem solid #2ecc71;
+}
+
+#bottomnav {
+  border-top: 0.1rem solid #2ecc71;
+  bottom: 0;
+}
+
+#topnav > * {
+  font-size: 1.25rem;
 }
 
 #topnav input[type="text"] {
@@ -134,13 +146,25 @@ nav h1 {
   color: #ffffff;
 }
 
+#topnav button:focus {
+  animation: pulsate-grey 1.5s 0s 1 ease-in-out;
+}
+
 #topnav-divider {
   width: 32px;
   background: url("../img/slant.svg") top left no-repeat;
 }
 
-nav #resetbtn {
-  flex-grow: 1;
+#bottomnav > * {
+  font-size: 1rem;
+}
+
+#bottomnav button {
+  background: linear-gradient(#ffffff, #f3f3f3);
+}
+
+#bottomnav button:focus {
+  animation: pulsate-green 0.5s 0s 1 ease-in-out;
 }
 
 /**
@@ -217,4 +241,25 @@ form {
 .form-large button {
   width: 20vw;
   margin-left: -0.4rem;
+}
+
+/**
+ * Animations
+ */
+@keyframes pulsate-green {
+  0%, 100% {
+    color: #27ae60;
+  }
+  50% {
+    color: #2ecc71;
+  }
+}
+
+@keyframes pulsate-grey {
+  0%, 100% {
+    color: #ffffff;
+  }
+  50% {
+    color: #dadada;
+  }
 }
