@@ -30,8 +30,8 @@
          * Before load hook for views
          */
         api.on("before:load", function (next) {
-            var prev = document.querySelector("#" + api.view);
-            next = document.querySelector("#" + next);
+            var prev = $("#" + api.view);
+            next = $("#" + next);
 
             prev && prev.classList.remove("active-view");
             next && next.classList.add("active-view");

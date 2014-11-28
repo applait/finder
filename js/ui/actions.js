@@ -8,21 +8,23 @@
          */
         var resetbtn_action = function () {
             api.reset();
-            document.querySelector(api.args.searchinput).value = "";
-            document.querySelector(api.args.searchinput).focus();
+            if ($(api.args.searchinput)) {
+                $(api.args.searchinput).value = "";
+                $(api.args.searchinput).focus();
+            }
         };
 
         /**
          * Actions to perform when search button is clicked
          */
         var searchbtn_action = function () {
-            api.search(document.querySelector(api.args.searchinput).value.trim());
+            api.search($(api.args.searchinput).value.trim());
         };
 
         /**
          * Bind delegated listeners for elements in topnav
          */
-        document.querySelector(api.args.topnav).addEventListener("click", function (e) {
+        $(api.args.topnav).addEventListener("click", function (e) {
 
             if (e.target && e.target.id) {
 
@@ -40,7 +42,7 @@
         /**
          * Bind delegated listeners for elements in bottomnav
          */
-        document.querySelector(api.args.bottomnav).addEventListener("click", function (e) {
+        $(api.args.bottomnav).addEventListener("click", function (e) {
 
             if (e.target && e.target.id) {
 
