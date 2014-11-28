@@ -7,10 +7,11 @@
          * Actions to perform when reset button is clicked
          */
         var resetbtn_action = function () {
+            var searchinput = $(api.args.searchinput);
             api.reset();
-            if ($(api.args.searchinput)) {
-                $(api.args.searchinput).value = "";
-                $(api.args.searchinput).focus();
+            if (searchinput) {
+                searchinput.value = "";
+                searchinput.focus();
             }
             $("#home section").innerHTML = riot.render($("#tmpl-home-stock").innerHTML.trim());
         };
