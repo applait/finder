@@ -173,6 +173,11 @@ nav #resetbtn {
 
 #bottomnav button {
   background: linear-gradient(#ffffff, #fefefe 75%, #fafafa);
+  border-right: 0.1rem solid #2ecc71;
+}
+
+#bottomnav :last-child {
+  border-right: none;
 }
 
 #bottomnav button:focus {
