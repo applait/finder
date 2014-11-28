@@ -47,8 +47,8 @@ var FinderModel = function (arg) {
     /**
      * Subscribe to Finder's fileFound event
      */
-    self.finder.on("fileFound", function (file) {
-        self.searchResults.push(file);
+    self.finder.on("fileFound", function (file, fileinfo) {
+        self.searchResults.push({ file: file, fileinfo: fileinfo });
     });
 
     /**
