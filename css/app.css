@@ -173,7 +173,7 @@ nav #resetbtn {
 
 #bottomnav button {
   background: linear-gradient(#ffffff, #fefefe 75%, #fafafa);
-  border-right: 0.1rem solid #2ecc71;
+  border-right: 0.1rem solid #cccccc;
 }
 
 #bottomnav :last-child {
