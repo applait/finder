@@ -45,6 +45,26 @@
             <button id="resetbtn" data-goto="#/home">Reset</button>
         </nav>
 
+        <!-- Templates -->
+
+        <!-- topnav for home -->
+        <template id="tmpl-topnav-home">
+            <input type="text" id="topnav-input" placeholder="Search..." maxlength="16">
+            <div id="topnav-divider">&nbsp;</div>
+            <button id="searchbtn">
+                <i class="icon-search"></i>
+            </button>
+        </template>
+
+        <!-- topnav for home -->
+        <template id="tmpl-topnav-about">
+            <h1>Finder</h1>
+            <div id="topnav-divider">&nbsp;</div>
+            <button data-goto="#/home">
+                <i class="icon-search"></i>
+            </button>
+        </template>
+
         <!-- dependencies -->
         <script type="text/javascript" src="js/libs/riot.js"></script>
         <script type="text/javascript" src="js/libs/EventEmitter.js"></script>
@@ -55,8 +75,10 @@
         <script type="text/javascript" src="js/findermodel.js"></script>
         <script type="text/javascript" src="js/extend.js"></script>
         <script type="text/javascript" src="js/route.js"></script>
+        <script type="text/javascript" src="js/ui/home.js"></script>
         <script type="text/javascript" src="js/ui/about.js"></script>
         <script type="text/javascript" src="js/ui/actions.js"></script>
+        <script type="text/javascript" src="js/ui/render.js"></script>
         <script type="text/javascript" src="js/init.js"></script>
     </body>
 
