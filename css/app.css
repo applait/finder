@@ -275,3 +275,14 @@ form {
     color: #dadada;
   }
 }
+
+/**
+ * Utilities
+ */
+.text-center {
+  text-align: center;
+}
+
+.has-padding {
+  padding: 1rem;
+}
