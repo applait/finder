@@ -74,5 +74,4 @@ var FinderModel = function (arg) {
         self.view = path;
     };
 
-
 };
