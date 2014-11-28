@@ -1,7 +1,5 @@
 window.addEventListener("DOMContentLoaded", function () {
 
-    var searchinput = "#topnav-input";
-
     // Initiate the app with a config. This will instantiate the api and invoke all
     // module registrations
     app({
@@ -9,7 +7,7 @@ window.addEventListener("DOMContentLoaded", function () {
         root: document.querySelector("body"),
         topnav: "#topnav",
         bottomnav: "#bottomnav",
-        searchinput: searchinput,
+        searchinput: "#topnav-input",
         searchbtn: "#searchbtn",
         cancelbtn: "#cancelbtn",
         resetbtn: "#resetbtn",
@@ -17,6 +15,6 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     // Set focus on the searchinput
-    document.querySelector(searchinput).focus();
+    document.querySelector("#topnav-input").focus();
 
 });

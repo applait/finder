@@ -3,17 +3,13 @@
     // Add behaviour for option buttons
     app(function (api) {
 
-        var topnav = document.querySelector(api.args.topnav),
-            bottomnav = document.querySelector(api.args.bottomnav);
-
         /**
          * Actions to perform when reset button is clicked
          */
         var resetbtn_action = function () {
-            var searchinput = document.querySelector(api.args.searchinput);
             api.reset();
-            searchinput.value = "";
-            searchinput.focus();
+            document.querySelector(api.args.searchinput).value = "";
+            document.querySelector(api.args.searchinput).focus();
         };
 
         /**
@@ -26,7 +22,7 @@
         /**
          * Bind delegated listeners for elements in topnav
          */
-        topnav.addEventListener("click", function (e) {
+        document.querySelector(api.args.topnav).addEventListener("click", function (e) {
 
             if (e.target && e.target.id) {
 
@@ -44,7 +40,7 @@
         /**
          * Bind delegated listeners for elements in bottomnav
          */
-        bottomnav.addEventListener("click", function (e) {
+        document.querySelector(api.args.bottomnav).addEventListener("click", function (e) {
 
             if (e.target && e.target.id) {
 
