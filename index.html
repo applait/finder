@@ -24,14 +24,14 @@
 
         <article id="home" class="active-view">
             <section>
-                <p>Type your query in the search box.<br> (e.g. ".jpg")</p>
+                <p class="text-center">Type your query in the search box.<br> (e.g. ".jpg")</p>
             </section>
         </article>
 
         <article id="about">
-            <section>
-                <h1>Finder</h1>
-                <p>A file search app for Firefox OS</p>
+            <section class="has-padding">
+                <h2>About</h2>
+                <p>A file search app for Firefox OS.</p>
                 <p>Made with <i class="icon-heart"></i> by
                     <a href="http://applait.com" target="_blank">Applait</a>.
                 </p>
@@ -49,20 +49,61 @@
 
         <!-- topnav for home -->
         <template id="tmpl-topnav-home">
-            <input type="text" id="topnav-input" placeholder="Search..." maxlength="16">
+            <form id="searchform">
+                <input type="text" id="topnav-input" placeholder="Search..." maxlength="16" value="{searchkey}">
+            </form>
             <div id="topnav-divider">&nbsp;</div>
             <button id="searchbtn">
                 <i class="icon-search"></i>
             </button>
         </template>
 
-        <!-- topnav for home -->
+        <!-- topnav for about -->
         <template id="tmpl-topnav-about">
             <h1>Finder</h1>
             <div id="topnav-divider">&nbsp;</div>
             <button data-goto="#/home">
-                <i class="icon-search"></i>
+                <i class="icon-right-open"></i>
             </button>
+        </template>
+
+        <!-- searchresults template -->
+        <template id="tmpl-searchresults">
+            <div id="searchresults-stats" class="has-padding">
+                <p>Found {filecount} file(s) matching <em>"{searchkey}"</em>.</p>
+            </div>
+            <div id="searchresults">{searchresults}</div>
+        </template>
+
+        <!-- searchresult item -->
+        <template id="tmpl-searchresult-item">
+            <div id="searchresult-item-{i}" class="searchresult-item">
+                <h3>{name}</h3>
+                <button data-goto="#/searchresult/{i}">
+                    <i class="icon-right-open"></i>
+                </button>
+            </div>
+        </template>
+
+        <!-- search loading item -->
+        <template id="tmpl-loading">
+            <p class="text-center">
+                Searching for <em>"{searchkey}"</em>&hellip;<br>
+                This may take some time&hellip;
+            </p>
+            <p class="text-center"><i class="icon-spin2 animate-spin"></i></p>
+        </template>
+
+        <!-- no results template -->
+        <template id="tmpl-noresults">
+            <p class="text-center">
+                No files found matching the name <em>"{searchkey}"</em>.
+            </p>
+        </template>
+
+        <!-- homepage stock text -->
+        <template id="tmpl-home-stock">
+            <p class="text-center">Type your query in the search box.<br> (e.g. ".jpg")</p>
         </template>
 
         <!-- dependencies -->

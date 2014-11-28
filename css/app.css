@@ -256,6 +256,37 @@ form {
 }
 
 /**
+ * Search results
+ */
+#searchresults {
+  display: flex;
+  flex-direction: column;
+}
+
+.searchresult-item {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: stretch;
+  border-bottom: 1px solid #ededed;
+}
+
+.searchresult-item:last-child {
+  border-bottom: none;
+}
+
+.searchresult-item h3 {
+  flex-grow: 1;
+  padding-left: 1rem;
+}
+
+.searchresult-item button {
+  width: 3rem;
+  height: 100%;
+  flex-basis: 3rem;
+}
+
+/**
  * Animations
  */
 @keyframes pulsate-green {

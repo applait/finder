@@ -12,6 +12,7 @@
                 $(api.args.searchinput).value = "";
                 $(api.args.searchinput).focus();
             }
+            $("#home section").innerHTML = riot.render($("#tmpl-home-stock").innerHTML.trim());
         };
 
         /**
@@ -34,7 +35,7 @@
                     searchbtn_action();
                     break;
 
-                };
+                }
             }
 
         }, false);
@@ -52,9 +53,21 @@
                     resetbtn_action();
                     break;
 
-                };
+                }
             }
 
+        }, false);
+
+        /**
+         * Bind delegated listeners for form handling
+         */
+        api.args.root.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (e.target && e.target.id && e.target.id === api.args.searchform.substr(1)) {
+                searchbtn_action();
+            }
+            return false;
         }, false);
 
     });
