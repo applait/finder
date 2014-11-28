@@ -160,7 +160,7 @@ nav #resetbtn {
 }
 
 #bottomnav button {
-  background: linear-gradient(#ffffff, #f3f3f3);
+  background: linear-gradient(#ffffff, #fefefe 75%, #fafafa);
 }
 
 #bottomnav button:focus {
