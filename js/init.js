@@ -12,7 +12,7 @@ window.addEventListener("DOMContentLoaded", function () {
         cancelbtn: "#cancelbtn",
         resetbtn: "#resetbtn",
         searchform: "#searchform",
-        debug: true
+        debug: false
     });
 
     // Set focus on the searchinput
