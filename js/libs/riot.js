@@ -71,7 +71,7 @@ riot.render = function(tmpl, data, escape_fn) {
 
     return tmpl.replace(/{\s*([\w\.]+)\s*}/g, function(k, v) {
         var p = v.split(".");
-        var t = data[p[0]];
+        var t = data ? data[p[0]] : null;
         if (t === undefined || t === null) return '';
         for (var i = 1; i < p.length; i++) t = t[p[i]];
         return (escape_fn ? escape_fn(t, v) : t || (t === undefined || t === null ? '': t));
