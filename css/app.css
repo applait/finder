@@ -132,8 +132,13 @@ nav #resetbtn {
   font-size: 1.25rem;
 }
 
-#topnav input[type="text"] {
+#topnav > h1, #topnav > form, #topnav > input[type="text"] {
+  width: 100%;
   flex-grow: 1;
+}
+
+#topnav input[type="text"] {
+  width: 100%;
   border: none;
   outline: none;
   padding: 0;
