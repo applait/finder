@@ -11,6 +11,7 @@ window.addEventListener("DOMContentLoaded", function () {
         searchbtn: "#searchbtn",
         cancelbtn: "#cancelbtn",
         resetbtn: "#resetbtn",
+        searchform: "#searchform",
         debug: true
     });
 
