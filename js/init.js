@@ -1,9 +1,7 @@
 window.addEventListener("DOMContentLoaded", function () {
 
-    // Initiate the app with a config. This will instantiate the api and invoke all
-    // module registrations
-    app({
-        path: location.hash ? location.hash.slice(2) : "home",
+    var options = {
+        path: "home",
         root: $("body"),
         topnav: "#topnav",
         bottomnav: "#bottomnav",
@@ -12,7 +10,21 @@ window.addEventListener("DOMContentLoaded", function () {
         cancelbtn: "#cancelbtn",
         resetbtn: "#resetbtn",
         searchform: "#searchform",
-        debug: false
-    }).load("home");
+        debug: false,
+        activityRequest: false
+    };
+
+    // If current request is a web activity, handle it
+    if (location.hash && location.hash === "#activity") {
+        navigator.mozSetMessageHandler('activity', function(activityRequest) {
+            options.activityRequest = activityRequest;
+
+            app(options).load("home");
+        });
+    }
+    // else, just trigger it normally
+    else {
+        app(options).load("home");
+    }
 
 });

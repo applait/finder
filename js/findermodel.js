@@ -26,11 +26,21 @@ var FinderModel = function (arg) {
     // Current search results
     self.searchResults = [];
 
+    // Web activity request handler
+    self.activityRequest = arg.activityRequest;
+
+    // Store history
+    self.history = [];
+
+    // Toggle state for deciding whether to push history
+    self.pushhistory = true;
+
     /**
      * Reset all internals
      */
     self.reset = function () {
         self.searchResults = [];
+        self.history = [];
         self.finder.reset();
     };
 
@@ -69,9 +79,10 @@ var FinderModel = function (arg) {
      * Provide a generic "load" method for routing
      */
     self.load = function (path) {
+        self.pushhistory && self.history[self.history.length - 1] !== self.view && self.history.push(self.view);
         self.trigger("before:load", path);
         self.trigger("load:" + path.split("/")[0], path);
-        self.view = path.split("/")[0];
+        self.view = path;
     };
 
     /**

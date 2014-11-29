@@ -16,7 +16,8 @@
 
                 riot.route(goto);
             } else if (goto && goto === "back") {
-                window.history.back();
+                api.pushhistory = false;
+                riot.route("#/" + api.history.pop());
             }
 
         }, false);
@@ -26,13 +27,14 @@
         // do api.trigger("load:" + url)
         riot.route(function (path) {
             api.load(path.substr(2));
+            api.pushhistory = true;
         });
 
         /**
          * Before load hook for views
          */
         api.on("before:load", function (next) {
-            var prev = $("#" + api.view);
+            var prev = $("#" + api.view.split("/")[0]);
             next = $("#" + next.split("/")[0]);
 
             prev && prev.classList.remove("active-view");

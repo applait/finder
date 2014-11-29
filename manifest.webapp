@@ -26,7 +26,7 @@
     "default_locale": "en",
     "activities": {
         "pick": {
-            "href": "./index.html",
+            "href": "./index.html#activity",
             "disposition": "window",
             "filters": {
                 "type": [
