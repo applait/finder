@@ -15,6 +15,8 @@
                 e.preventDefault();
 
                 riot.route(goto);
+            } else if (goto && goto === "back") {
+                window.history.back();
             }
 
         }, false);

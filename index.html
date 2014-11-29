@@ -61,9 +61,33 @@
         <template id="tmpl-topnav-default">
             <h1>Finder</h1>
             <div id="topnav-divider">&nbsp;</div>
-            <button data-goto="#/home">
-                <i class="icon-right-open"></i>
+            <button data-goto="#/about">
+                <i class="icon-info"></i>
             </button>
+        </template>
+
+        <!-- bottomnav home template -->
+        <template id="tmpl-bottomnav-home">
+            <button id="aboutbtn" data-goto="#/about">
+                <i class="icon-help"></i>
+            </button>
+            <button id="resetbtn" data-goto="#/home">Reset</button>
+        </template>
+
+        <!-- bottomnav default template -->
+        <template id="tmpl-bottomnav-default">
+            <button id="backbtn" data-goto="back">
+                <i class="icon-left-open"></i>
+            </button>
+            <button id="resetbtn" data-goto="#/home">Reset</button>
+        </template>
+
+        <!-- bottomnav web activity template -->
+        <template id="tmpl-bottomnav-webactivity">
+            <button id="cancelbtn">
+                <i class="icon-close-circled"></i>
+            </button>
+            <button id="resetbtn" data-goto="#/home">Reset</button>
         </template>
 
         <!-- searchresults template -->
