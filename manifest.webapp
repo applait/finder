@@ -28,6 +28,14 @@
         "pick": {
             "href": "./index.html",
             "disposition": "window",
+            "filters": {
+                "type": [
+                    "image/*", "image/jpeg", "image/png", "image/gif", "image/bmp",
+                    "audio/*", "audio/ogg", "audio/mp4", "audio/mpeg",
+                    "video/*", "video/mp4", "video/webm", "video/3gpp",
+                    "application/pdf"
+                ]
+            },
             "returnValue": true
         }
     }
