@@ -1,6 +1,6 @@
 /*
-  Animation example, for spinners
-  */
+   Animation example, for spinners
+*/
 .animate-spin {
   -moz-animation: spin 2s infinite linear;
   -o-animation: spin 2s infinite linear;
