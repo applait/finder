@@ -32,6 +32,11 @@
             </section>
         </article>
 
+        <!-- Search result item view -->
+        <article id="detail">
+            <section class="has-padding"></section>
+        </article>
+
         <nav id="bottomnav">
             <button id="aboutbtn" data-goto="#/about">
                 <i class="icon-help"></i>
@@ -71,9 +76,9 @@
 
         <!-- searchresult item -->
         <template id="tmpl-searchresult-item">
-            <div id="searchresult-item-{i}" class="searchresult-item">
-                <h3>{name}</h3>
-                <button data-goto="#/searchresult/{i}">
+            <div id="searchresult-item-{i}" class="searchresult-item" data-index="{i}" data-goto="#/detail/{i}">
+                <h3 data-goto="#/detail/{i}">{name}</h3>
+                <button data-goto="#/detail/{i}">
                     <i class="icon-right-open"></i>
                 </button>
             </div>
@@ -95,6 +100,24 @@
             </p>
         </template>
 
+        <!-- search detail template -->
+        <template id="tmpl-detail">
+            <h3>{name}</h3>
+            <ul class="list">
+                <li>Path: {path}</li>
+                <li>Size: {size}</li>
+                <li>Last Modified: {modified}</li>
+            </ul>
+            <div class="button-strip">
+                <button id="previewbtn" class="border">
+                    <i class="icon-eye"></i>
+                </button>
+                <button id="pickbtn" class="border">
+                    <i class="icon-ok-1"></i>
+                </button>
+            </div>
+        </template>
+
         <!-- homepage stock text -->
         <template id="tmpl-home-stock">
             <p class="text-center">Type your query in the search box.<br> (e.g. ".jpg")</p>
@@ -111,6 +134,7 @@
         <script type="text/javascript" src="js/extend.js"></script>
         <script type="text/javascript" src="js/route.js"></script>
         <script type="text/javascript" src="js/ui/home.js"></script>
+        <script type="text/javascript" src="js/ui/detail.js"></script>
         <script type="text/javascript" src="js/ui/actions.js"></script>
         <script type="text/javascript" src="js/ui/render.js"></script>
         <script type="text/javascript" src="js/init.js"></script>
