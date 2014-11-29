@@ -61,6 +61,20 @@
 
             }, false);
 
+            // Pick button handler
+            $("#pickbtn") && $("#pickbtn").addEventListener("click", function (e) {
+                e.preventDefault();
+
+                var result = api.searchResults[e.target.dataset.index];
+
+                if (api.activityRequest.source.name === "pick") {
+                    api.activityRequest.postResult({
+                        type: result.file.type,
+                        blob: result.file
+                    });
+                }
+            }, false);
+
             // Memory cleanup
             result = tmpl = null;
 
