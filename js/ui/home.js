@@ -2,6 +2,12 @@
 
     app(function (api) {
 
+        // Load stock home on first app load
+        api.one("load:home", function () {
+            $("#home section").innerHTML = riot.render($("#tmpl-home-stock").innerHTML.trim());
+            $(api.args.searchinput) && $(api.args.searchinput).focus();
+        });
+
         api.finder.on("searchBegin", function (key) {
             $("#home section").innerHTML = riot.render($("#tmpl-loading").innerHTML.trim(), { searchkey: key });
         });

@@ -16,6 +16,6 @@ window.addEventListener("DOMContentLoaded", function () {
     });
 
     // Set focus on the searchinput
-    $("#topnav-input").focus();
+    app().load("home");
 
 });
