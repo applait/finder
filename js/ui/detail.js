@@ -10,8 +10,10 @@
             $("#detail section").innerHTML = riot.render(tmpl, {
                 name: result.fileinfo.name,
                 path: result.fileinfo.path,
-                size: result.file.size,
-                modified: result.file.lastModifiedDate.toDateString()
+                size: result.file.size ? Math.round(result.file.size / 1000) + " KB" : "Unknown",
+                modified: result.file.lastModifiedDate ? result.file.lastModifiedDate.toDateString() : "Unknown",
+                icontype: api.iconclass(result.file.type),
+                i: path.split("/")[1]
             });
 
             // Memory cleanup
