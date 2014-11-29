@@ -13,9 +13,6 @@ window.addEventListener("DOMContentLoaded", function () {
         resetbtn: "#resetbtn",
         searchform: "#searchform",
         debug: false
-    });
-
-    // Set focus on the searchinput
-    app().load("home");
+    }).load("home");
 
 });
