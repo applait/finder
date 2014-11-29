@@ -70,8 +70,8 @@ var FinderModel = function (arg) {
      */
     self.load = function (path) {
         self.trigger("before:load", path);
-        self.trigger("load:" + path);
-        self.view = path;
+        self.trigger("load:" + path.split("/")[0], path);
+        self.view = path.split("/")[0];
     };
 
 };
