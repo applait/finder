@@ -27,6 +27,9 @@
                 searchkey: api.finder.searchkey,
                 searchresults: searchresults
             });
+
+            // Memory cleanup
+            itemtmpl = listtmpl = searchresults = null;
         });
 
         api.on("noResults", function (key) {

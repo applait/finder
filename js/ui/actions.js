@@ -14,6 +14,9 @@
                 searchinput.focus();
             }
             $("#home section").innerHTML = riot.render($("#tmpl-home-stock").innerHTML.trim());
+
+            // Cleanup memory
+            searchinput = null;
         };
 
         /**
