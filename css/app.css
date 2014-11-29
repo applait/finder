@@ -28,6 +28,11 @@ body {
   color: #333333;
 }
 
+ul {
+  padding: 0 0 0 1rem;
+  margin: 0;
+}
+
 /**
  * Headings
  */
@@ -87,6 +92,11 @@ input[type="text"]:focus, button:focus {
 
 .border:focus {
   border: 0.05rem solid #333333;
+}
+
+a, a:visited {
+  text-decoration: none;
+  color: #27ae60;
 }
 
 /**
