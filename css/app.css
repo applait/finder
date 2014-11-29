@@ -44,6 +44,13 @@ h1, h2, h3, h4, h5, h6, input, textarea {
 }
 
 /**
+ * Form
+ */
+form {
+  width: 100%;
+}
+
+/**
  * Inline elements
  */
 code {
@@ -229,35 +236,6 @@ section {
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0;
-}
-
-/**
- * Form elements
- */
-form {
-  width: 100%;
-}
-
-.form-large {
-  text-align: center;
-}
-
-.form-large input[type="text"],
-.form-large button {
-  height: 4rem;
-  line-height: 1.5rem;
-  font-size: 1.5rem;
-  padding: 1rem;
-  display: inline-block;
-}
-
-.form-large input[type="text"] {
-  width: 70vw;
-}
-
-.form-large button {
-  width: 20vw;
-  margin-left: -0.4rem;
 }
 
 /**
