@@ -19,7 +19,7 @@
             });
 
             // Preview button handler
-            $("#previewbtn").addEventListener("click", function (e) {
+            $("#previewbtn") && $("#previewbtn").addEventListener("click", function (e) {
                 e.preventDefault();
 
                 var activityname = "open",
@@ -43,7 +43,7 @@
             }, false);
 
             // Share button handler
-            $("#sharebtn").addEventListener("click", function (e) {
+            $("#sharebtn") && $("#sharebtn").addEventListener("click", function (e) {
                 e.preventDefault();
 
                 var result = api.searchResults[e.target.dataset.index];
