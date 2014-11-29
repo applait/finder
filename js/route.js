@@ -31,7 +31,7 @@
          */
         api.on("before:load", function (next) {
             var prev = $("#" + api.view);
-            next = $("#" + next);
+            next = $("#" + next.split("/")[0]);
 
             prev && prev.classList.remove("active-view");
             next && next.classList.add("active-view");
