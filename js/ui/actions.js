@@ -27,6 +27,13 @@
         };
 
         /**
+         * Actions to perform when cancel button is clicked
+         */
+        var cancelbtn_action = function () {
+            api.activityRequest && api.activityRequest.postError("Pick cancelled.");
+        };
+
+        /**
          * Bind delegated listeners for elements in topnav
          */
         $(api.args.topnav).addEventListener("click", function (e) {
@@ -55,6 +62,10 @@
 
                 case api.args.resetbtn:
                     resetbtn_action();
+                    break;
+
+                case api.args.cancelbtn:
+                    cancelbtn_action();
                     break;
 
                 }
