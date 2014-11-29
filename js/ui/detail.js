@@ -13,7 +13,9 @@
                 size: result.file.size ? Math.round(result.file.size / 1000) + " KB" : "Unknown",
                 modified: result.file.lastModifiedDate ? result.file.lastModifiedDate.toDateString() : "Unknown",
                 icontype: api.iconclass(result.file.type),
-                i: path.split("/")[1]
+                i: path.split("/")[1],
+                shareorpickid: api.activityRequest ? "pick" : "share",
+                shareorpickclass: api.activityRequest ? "ok-circled" : "share"
             });
 
             // Preview button handler

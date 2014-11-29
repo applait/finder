@@ -9,6 +9,7 @@ window.addEventListener("DOMContentLoaded", function () {
         searchbtn: "#searchbtn",
         cancelbtn: "#cancelbtn",
         resetbtn: "#resetbtn",
+        pickbtn: "#pickbtn",
         searchform: "#searchform",
         debug: false,
         activityRequest: false
