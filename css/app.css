@@ -171,17 +171,14 @@ nav #resetbtn {
 }
 
 #topnav button {
-  background: linear-gradient(#2ecc71, #27ae60);
+  background: url("../img/slant.svg") top left no-repeat;
+  width: 4rem;
+  text-align: right;
   color: #ffffff;
 }
 
 #topnav button:focus {
   animation: pulsate-grey 1.5s 0s 1 ease-in-out;
-}
-
-#topnav-divider {
-  width: 32px;
-  background: url("../img/slant.svg") top left no-repeat;
 }
 
 #bottomnav > * {
