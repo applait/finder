@@ -260,13 +260,13 @@ section {
 
 .searchresult-item h3 {
   flex-grow: 1;
-  padding-left: 1rem;
+  word-wrap: break-word;
 }
 
 .searchresult-item button {
-  width: 3rem;
+  width: 2rem;
   height: 100%;
-  flex-basis: 3rem;
+  flex-basis: 2rem;
 }
 
 .button-strip {
@@ -275,6 +275,32 @@ section {
   justify-content: center;
   align-items: stretch;
   align-content: center;
+}
+
+.button-strip button {
+  padding: 1rem;
+  font-size: 1.25rem;
+}
+
+.list {
+  list-style-type: none;
+  list-style-image: none;
+  margin: 1rem 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #cccccc;
+}
+
+.list > li {
+  width: 100%;
+  margin: 0;
+  padding: 1rem;
+  border-bottom: 1px solid #cfcfcf;
+}
+
+.list > li:last-child {
+  border-bottom: none;
 }
 
 /**
