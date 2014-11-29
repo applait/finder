@@ -269,6 +269,14 @@ section {
   flex-basis: 3rem;
 }
 
+.button-strip {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: center;
+}
+
 /**
  * Animations
  */
