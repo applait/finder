@@ -16,6 +16,49 @@
                 i: path.split("/")[1]
             });
 
+            // Preview button handler
+            $("#previewbtn").addEventListener("click", function (e) {
+                e.preventDefault();
+
+                var activityname = "open",
+                    result = api.searchResults[e.target.dataset.index];
+                if (result.file.type === "application/pdf") {
+                    activityname = "view";
+                }
+
+                var activity = new MozActivity({
+                    name: activityname,
+                    data: {
+                        type: result.file.type,
+                        blob: result.file
+                    }
+                });
+
+                activity.onerror = function () {
+                    alert("Cannot preview this file.");
+                };
+
+            }, false);
+
+            // Share button handler
+            $("#sharebtn").addEventListener("click", function (e) {
+                e.preventDefault();
+
+                var result = api.searchResults[e.target.dataset.index];
+
+                var data = { blob: result.file, number: 1 };
+
+                if (result.file.type.indexOf("image") === 0) {
+                    data.type = "image/*";
+                }
+
+                var activity = new MozActivity({
+                    name: "share",
+                    data: data
+                });
+
+            }, false);
+
             // Memory cleanup
             result = tmpl = null;
 
