@@ -46,7 +46,7 @@
 
                 var result = api.searchResults[e.target.dataset.index];
 
-                var data = { blob: result.file, number: 1 };
+                var data = { blobs: [result.file], number: 1 };
 
                 if (result.file.type.indexOf("image") === 0) {
                     data.type = "image/*";
