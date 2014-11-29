@@ -19,7 +19,11 @@
                 searchresults = "";
 
             api.searchResults.forEach(function (item, idx) {
-                searchresults += riot.render(itemtmpl, {i: idx, name: item.fileinfo.name});
+                searchresults += riot.render(itemtmpl, {
+                    i: idx,
+                    name: item.fileinfo.name,
+                    icontype: api.iconclass(item.file.type)
+                });
             });
 
             $("#home section").innerHTML = riot.render(listtmpl, {

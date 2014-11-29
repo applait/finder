@@ -74,4 +74,21 @@ var FinderModel = function (arg) {
         self.view = path.split("/")[0];
     };
 
+    /**
+     * Provide file type icon classes based on a mapping
+     */
+    self.iconclass = function (type) {
+        var map = {
+            "image/jpeg": "picture",
+            "image/png": "picture",
+            "image/gif": "picture",
+            "image/bmp": "picture",
+            "audio/mpeg": "video",
+            "video/mp4": "videocam",
+            "application/pdf": "doc"
+        };
+
+        return map[type] || "doc";
+    };
+
 };

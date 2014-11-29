@@ -77,6 +77,9 @@
         <!-- searchresult item -->
         <template id="tmpl-searchresult-item">
             <div id="searchresult-item-{i}" class="searchresult-item" data-index="{i}" data-goto="#/detail/{i}">
+                <button data-goto="#/detail/{i}">
+                    <i class="icon-{icontype}"></i>
+                </button>
                 <h3 data-goto="#/detail/{i}">{name}</h3>
                 <button data-goto="#/detail/{i}">
                     <i class="icon-right-open"></i>
@@ -102,18 +105,18 @@
 
         <!-- search detail template -->
         <template id="tmpl-detail">
-            <h3>{name}</h3>
+            <h3><i class="icon-{icontype}"></i> {name}</h3>
             <ul class="list">
                 <li>Path: {path}</li>
                 <li>Size: {size}</li>
                 <li>Last Modified: {modified}</li>
             </ul>
             <div class="button-strip">
-                <button id="previewbtn" class="border">
+                <button id="previewbtn" class="border" data-index="{i}">
                     <i class="icon-eye"></i>
                 </button>
-                <button id="pickbtn" class="border">
-                    <i class="icon-ok-1"></i>
+                <button id="sharebtn" class="border" data-index="{i}">
+                    <i class="icon-share"></i>
                 </button>
             </div>
         </template>
