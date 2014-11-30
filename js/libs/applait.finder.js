@@ -1,4 +1,5 @@
 /**
+ * @file
  * File picker and finder for device storages on Firefox OS devices
  *
  * This library provides an easy-to-use asynchronous interface for other Firefox OS apps to search for files
@@ -10,18 +11,35 @@
  * This library depends on [EventEmitter](https://github.com/Wolfy87/EventEmitter) by Wolfy87, included with the
  * package.
  *
- * @version 1.0.0
+ * @version 1.1.2
  * @license The MIT License (MIT)
- *
- * Copyright (c) 2014 Applait Technologies LLP
+ * @author Applait Technologies LLP
+ * @copyright Copyright (c) 2014 Applait Technologies LLP
  */
 
+/**
+ * Core Applait namespace for Applait libraries.
+ *
+ * @namespace
+ */
 var Applait = Applait || {};
 
 /**
  * Core `Finder` class. Provides the constructor for applications to instantiate.
  *
+ * @memberOf Applait
  * @constructor
+ *
+ * @property {object} options - Easy access to `options` passed in constructor argument.
+ * @property {string} type - The type of DeviceStorage specified.
+ * @property {boolean} hidden - Boolean specifying whether hidden files will be included in search or not.
+ * @property {boolean} casesensitive - Boolean specifying whether searches will be case sensitive or not.
+ * @property {boolean} debugmode - Boolean activating or deactivating debug mode.
+ * @property {array} storages - Array of device storage cursors based on `this.type`.
+ * @property {number} searchcompletecount - Number of device storages searched through in latest search.
+ * @property {number} filematchcount - Number of files found in latest search
+ * @property {string} searchkey - Search term used in last search
+ *
  * @param {object=} options - Default options for the `Finder` constructor. It can include any of the following
  * properties:
  *
@@ -40,22 +58,32 @@ Applait.Finder = function (options) {
 
     this.options = options || {};
 
-    this.type = options.type || "sdcard";
+    this.type = this.options.type || "sdcard";
 
-    this.hidden = options.hidden || false;
+    this.hidden = this.options.hidden || false;
 
-    this.casesensitive = options.caseSensitive || false;
+    this.casesensitive = this.options.caseSensitive || false;
 
-    this.minSearchLength = (options.minSearchLength && typeof options.minSearchLength === "number") ?
+    this.minsearchlength = (this.options.minSearchLength && typeof this.options.minSearchLength === "number") ?
         options.minSearchLength : 3;
 
-    this.debugMode = options.debugMode ? true : false;
+    this.debugmode = this.options.debugMode ? true : false;
 
     this.storages = navigator.getDeviceStorages && navigator.getDeviceStorages(this.type);
 
-    this.events = new EventEmitter();
+    this.searchcompletecount = 0;
 
+    this.filematchcount = 0;
+
+    this.searchkey = "";
 };
+
+
+/**
+ * Make `Applait.Finder` inherit the `EventEmitter` prototype chain.
+ */
+Applait.Finder.prototype = new EventEmitter();
+
 
 /**
  * Match hidden files based on settings
@@ -71,94 +99,86 @@ Applait.Finder.prototype.checkhidden = function (filename) {
     return true;
 };
 
+
 /**
  * Instantiate search
  *
  * @memberOf Applait.Finder
  * @param {string} needle - The string to match file names from the device storage.
- * @return {null} - Only if `needle` length is less than `minSearchLength` or if no DeviceStorages are found.
+ * @return {null} - Only if `needle` length is less than `minsearchlength` or if no DeviceStorages are found.
  */
 Applait.Finder.prototype.search = function (needle) {
 
-    var context = this,
-        filematchcount = 0;
+    var self = this;
 
-    needle = needle.trim();
+    self.reset();
+    self.searchkey = !self.casesensitive ? needle.trim().toLowerCase() : needle.trim();
 
-    if (needle.length < context.minSearchLength) {
-        if (context.debugMode) {
-            console.log("Search cancelled. Less than " + context.minSearchLength +  " characters search string");
-        }
-        context.events.emitEvent("searchCancelled",
-                                 ["Search string should be at least " + context.minSearchLength + " characters"]);
+    if (self.searchkey.length < self.minsearchlength) {
+        self.log("searchCancelled",
+                 ["Search string should be at least " + self.minsearchlength + " characters"]);
+        self.emitEvent("searchCancelled",
+                       ["Search string should be at least " + self.minsearchlength + " characters"]);
         return null;
     }
 
-    if (context.storages.length < 1) {
-        if (context.debugMode) {
-            console.log("empty", needle);
-        }
-        context.events.emitEvent("empty", [needle]);
+    if (self.storagecount() < 1) {
+        self.log("empty", [self.searchkey]);
+        self.emitEvent("empty", [self.searchkey]);
         return null;
     }
 
-    if (context.debugMode) {
-        console.log("searchBegin", needle);
-    }
-    context.events.emitEvent("searchBegin", [needle]);
+    self.log("searchBegin", [self.searchkey]);
+    self.emitEvent("searchBegin", [self.searchkey]);
 
-    context.storages.forEach(function (storage) {
+    self.storages.forEach(function (storage) {
 
         var cursor = storage.enumerate();
 
-        if (context.debugMode) {
-            console.log("storageSearchBegin", storage.storageName, needle);
-        }
-        context.events.emitEvent("storageSearchBegin", [storage.storageName, needle]);
+        self.log("storageSearchBegin", [storage.storageName, self.searchkey]);
+        self.emitEvent("storageSearchBegin", [storage.storageName, self.searchkey]);
 
         cursor.onsuccess = function () {
 
             if (this.result) {
 
                 var file = this.result;
-                var fileinfo = context.splitname(file.name);
-                var searchname = context.casesensitive ? fileinfo.name : fileinfo.name.toLowerCase();
+                var fileinfo = self.splitname(file.name);
 
-                if (searchname.indexOf(needle) > -1 && context.checkhidden(searchname)) {
-                    filematchcount++;
-                    if (context.debugMode) {
-                        console.log("fileFound", file, fileinfo, storage.storageName);
-                    }
-                    context.events.emitEvent("fileFound", [file, fileinfo, storage.storageName]);
+                if (self.matchname(fileinfo.name)) {
+                    self.filematchcount++;
+                    self.log("fileFound", [file, fileinfo, storage.storageName]);
+                    self.emitEvent("fileFound", [file, fileinfo, storage.storageName]);
                 }
-
                 if (!this.done) {
                     this.continue();
                 } else {
-                    if (context.debugMode) {
-                        console.log("searchComplete", storage.storageName, needle, filematchcount);
-                    }
-                    context.events.emitEvent("searchComplete", [storage.storageName, needle, filematchcount]);
+                    self.searchcompletecount++;
+                    self.log("storageSearchComplete", [storage.storageName, self.searchkey]);
+                    self.emitEvent("storageSearchComplete", [storage.storageName, self.searchkey]);
                 }
             } else {
-                if (context.debugMode) {
-                    console.log("searchComplete", storage.storageName, needle, filematchcount);
-                }
-                context.events.emitEvent("searchComplete", [storage.storageName, needle, filematchcount]);
+                self.searchcompletecount++;
+                self.log("storageSearchComplete", [storage.storageName, self.searchkey]);
+                self.emitEvent("storageSearchComplete", [storage.storageName, self.searchkey]);
+            }
+
+            if (self.searchcompletecount === self.storagecount()) {
+                self.log("searchComplete", [self.searchkey, self.filematchcount]);
+                self.emitEvent("searchComplete", [self.searchkey, self.filematchcount]);
             }
 
         };
 
         cursor.onerror = function () {
-            if (context.debugMode) {
-                console.log("Error accessing device storage '" + storage.storageName + "'", this.error);
-            }
-            context.events.emitEvent('error', ["Error accessing device storage '" + storage.storageName + "'",
-                                               this.error]);
+            self.log("error", ["Error accessing device storage '" + storage.storageName + "'", this.error]);
+            self.emitEvent("error", ["Error accessing device storage '" + storage.storageName + "'",
+                                     this.error]);
         };
 
     });
 };
+
 
 /**
  * Splits full file path into basename and path to directory.
@@ -174,4 +194,54 @@ Applait.Finder.prototype.splitname = function (filename) {
     filename = filename.split(/[\\/]/);
 
     return { "name": filename.pop(), "path": filename.join("/") };
+};
+
+
+/**
+ * Return the number of storages being used
+ *
+ * @memberOf Applait.Finder
+ * @return {number} - The length of storages
+ */
+Applait.Finder.prototype.storagecount = function () {
+    return this.storages && this.storages.length ? this.storages.length : 0;
+};
+
+
+/**
+ * Reset internals
+ *
+ * @memberOf Applait.Finder
+ */
+Applait.Finder.prototype.reset = function () {
+    this.filematchcount = 0;
+    this.searchcompletecount = 0;
+    this.searchkey = "";
+};
+
+
+/**
+ * Generic logging method, dependent on debugMode
+ *
+ * @memberOf Applait.Finder
+ * @param {string} message - A string identifying this log
+ * @param {array} args - An array of stuff to print
+ */
+Applait.Finder.prototype.log = function (message, args) {
+    if (this.debugmode) {
+        console.log(message, args);
+    }
+};
+
+
+/**
+ * Match name
+ *
+ * @memberOf Applait.Finder
+ * @param {string} name - Filename
+ * @return {boolean}
+ */
+Applait.Finder.prototype.matchname = function (name) {
+    name = !this.casesensitive ? name.trim().toLowerCase() : name.trim();
+    return (name.indexOf(this.searchkey) > -1 && this.checkhidden(name));
 };

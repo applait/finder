@@ -1,5 +1,5 @@
 {
-    "version": "1.1.1",
+    "version": "2.0.0-alpha",
     "name": "Finder",
     "description": "File search and file picker app for Firefox OS",
     "launch_path": "/index.html",
@@ -26,8 +26,16 @@
     "default_locale": "en",
     "activities": {
         "pick": {
-            "href": "./index.html",
+            "href": "./index.html#activity",
             "disposition": "window",
+            "filters": {
+                "type": [
+                    "image/*", "image/jpeg", "image/png", "image/gif", "image/bmp",
+                    "audio/*", "audio/ogg", "audio/mp4", "audio/mpeg",
+                    "video/*", "video/mp4", "video/webm", "video/3gpp",
+                    "application/pdf"
+                ]
+            },
             "returnValue": true
         }
     }
