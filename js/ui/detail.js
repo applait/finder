@@ -36,6 +36,9 @@
                     alert("Cannot preview this file.");
                 };
 
+                // Memory cleanup
+                result = null;
+
             }, false);
 
             // Share button handler
@@ -55,6 +58,9 @@
                     data: data
                 });
 
+                // Memory cleanup
+                result = data = null;
+
             }, false);
 
             // Pick button handler
@@ -69,6 +75,10 @@
                         blob: result.file
                     });
                 }
+
+                // Memory cleanup
+                result = null;
+
             }, false);
 
             // Memory cleanup
