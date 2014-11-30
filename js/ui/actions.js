@@ -97,5 +97,18 @@
             return false;
         }, false);
 
+        /**
+         * Handle error actions
+         */
+        api.finder.on("error", function () {
+            alert("Oops. Looks like your device does not support Finder.");
+            resetbtn_action();
+        });
+
+        api.finder.on("empty", function () {
+            alert("Oops. Your device does not have any storage to search from.");
+            resetbtn_action();
+        });
+
     });
 })();
