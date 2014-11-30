@@ -211,14 +211,11 @@ article {
   position: absolute;
   top: 0;
   left: 0;
+  background: #ffffff;
   opacity: 0;
   z-index: 0;
-  transition: opacity 0.5s ease-in-out;
-}
-
-article.active-view {
-  opacity: 1;
-  z-index: 1;
+  transform: translate3d(105%, 0, 0);
+  transition: transform 0.5s, opacity 0.25s linear;
 }
 
 .has-topnav article {
@@ -244,6 +241,31 @@ section {
   overflow-x: hidden;
   overflow-y: auto;
   padding: 0;
+}
+
+/**
+ * View transitions
+ */
+.slide-top {
+  transform: translate3d(0, -105%, 0);
+}
+
+.slide-right {
+  transform: translate3d(105%, 0, 0);
+}
+
+.slide-bottom {
+  transform: translate3d(0, 105%, 0);
+}
+
+.slide-left {
+  transform: translate3d(-105%, 0, 0);
+}
+
+.active-view {
+  transform: translate3d(0, 0, 0);
+  opacity: 1;
+  z-index: 1;
 }
 
 /**
