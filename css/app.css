@@ -284,6 +284,8 @@ section {
   justify-content: space-between;
   align-items: stretch;
   border-bottom: 1px solid #ededed;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
 }
 
 .searchresult-item:last-child {
