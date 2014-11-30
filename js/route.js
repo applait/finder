@@ -20,6 +20,9 @@
                 riot.route("#/" + api.history.pop());
             }
 
+            // Memory cleanup
+            goto = null;
+
         }, false);
 
         // Next, listen to riot.route(fn), which will trigger the things we need to do
@@ -39,6 +42,9 @@
 
             prev && prev.classList.remove("active-view");
             next && next.classList.add("active-view");
+
+            // Memory cleanup
+            prev = next = null;
         });
 
     });
