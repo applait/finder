@@ -9,11 +9,23 @@
         var resetbtn_action = function () {
             var searchinput = $(api.args.searchinput);
             api.reset();
+            $("#home section").innerHTML = riot.render($("#tmpl-home-stock").innerHTML.trim());
+
+            // If searchinput exists, we are on home page. So reset
             if (searchinput) {
                 searchinput.value = "";
                 searchinput.focus();
             }
-            $("#home section").innerHTML = riot.render($("#tmpl-home-stock").innerHTML.trim());
+            // Else add a one time listener for home load. This will make sure
+            // searchinput exists by then.
+            else {
+                api.one("load:home", function () {
+                    var searchinput = $(api.args.searchinput);
+                    searchinput.value = "";
+                    searchinput.focus();
+                    searchinput = null; // Cleanup
+                });
+            }
 
             // Cleanup memory
             searchinput = null;
