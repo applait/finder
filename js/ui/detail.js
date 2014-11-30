@@ -22,14 +22,10 @@
             $("#previewbtn") && $("#previewbtn").addEventListener("click", function (e) {
                 e.preventDefault();
 
-                var activityname = "open",
-                    result = api.searchResults[e.target.dataset.index];
-                if (result.file.type === "application/pdf") {
-                    activityname = "view";
-                }
+                var result = api.searchResults[e.target.dataset.index];
 
                 var activity = new MozActivity({
-                    name: activityname,
+                    name: result.file.type === "application/pdf" ? "view" : "open",
                     data: {
                         type: result.file.type,
                         blob: result.file
