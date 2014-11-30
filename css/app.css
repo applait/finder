@@ -2,10 +2,12 @@
  * Resets and normalize
  */
 html {
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 *, *:before, *:after, input {
+  -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -238,7 +240,6 @@ article {
 section {
   flex: 1 0 0%;
   width: 100%;
-  min-height: 100%;
   overflow-x: hidden;
   overflow-y: scroll;
   padding: 0;
