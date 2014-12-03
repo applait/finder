@@ -45,6 +45,12 @@
             $(api.args.searchinput).removeAttribute("disabled");
         });
 
+        api.finder.on("searchComplete", function() {
+            $(api.args.resetbtn).removeAttribute("disabled");
+            $(api.args.searchbtn).removeAttribute("disabled");
+            $(api.args.searchinput).removeAttribute("disabled");
+        });
+
         api.on("noResults", function (key) {
             $("#home section").innerHTML = riot.render($("#tmpl-noresults").innerHTML.trim(), {
                 searchkey: key
