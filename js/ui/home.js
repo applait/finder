@@ -10,6 +10,9 @@
 
         api.finder.on("searchBegin", function (key) {
             $("#home section").innerHTML = riot.render($("#tmpl-loading").innerHTML.trim(), { searchkey: key });
+            $(api.args.resetbtn).setAttribute("disabled", true);
+            $(api.args.searchbtn).setAttribute("disabled", true);
+            $(api.args.searchinput).setAttribute("disabled", true);
         });
 
         api.on("resultsFound", function () {
@@ -35,6 +38,12 @@
             // Memory cleanup
             itemtmpl = listtmpl = searchresults = null;
         });
+
+        api.finder.on("searchCancelled", function() {
+            $(api.args.resetbtn).removeAttribute("disabled");
+            $(api.args.searchbtn).removeAttribute("disabled");
+            $(api.args.searchinput).removeAttribute("disabled");
+            });
 
         api.on("noResults", function (key) {
             $("#home section").innerHTML = riot.render($("#tmpl-noresults").innerHTML.trim(), {
