@@ -11,7 +11,7 @@
  * This library depends on [EventEmitter](https://github.com/Wolfy87/EventEmitter) by Wolfy87, included with the
  * package.
  *
- * @version 1.1.2
+ * @version 1.1.3
  * @license The MIT License (MIT)
  * @author Applait Technologies LLP
  * @copyright Copyright (c) 2014 Applait Technologies LLP
@@ -92,8 +92,8 @@ Applait.Finder.prototype = new EventEmitter();
  * @return {boolean} - `true` if file is a hidden file and if `hidden`
  * is `true` in constructor options.
  */
-Applait.Finder.prototype.checkhidden = function (filename) {
-    if ((filename.indexOf(".") === 0) && this.hidden !== true) {
+Applait.Finder.prototype.checkhidden = function (fullpath) {
+    if (fullpath[fullpath.indexOf(".") - 1] === "/" && this.hidden !== true) {
         return false;
     }
     return true;
@@ -145,7 +145,7 @@ Applait.Finder.prototype.search = function (needle) {
                 var file = this.result;
                 var fileinfo = self.splitname(file.name);
 
-                if (self.matchname(fileinfo.name)) {
+                if (self.matchname(fileinfo.name, file.name)) {
                     self.filematchcount++;
                     self.log("fileFound", [file, fileinfo, storage.storageName]);
                     self.emitEvent("fileFound", [file, fileinfo, storage.storageName]);
@@ -241,7 +241,7 @@ Applait.Finder.prototype.log = function (message, args) {
  * @param {string} name - Filename
  * @return {boolean}
  */
-Applait.Finder.prototype.matchname = function (name) {
+Applait.Finder.prototype.matchname = function (name, fullpath) {
     name = !this.casesensitive ? name.trim().toLowerCase() : name.trim();
-    return (name.indexOf(this.searchkey) > -1 && this.checkhidden(name));
+    return (name.indexOf(this.searchkey) > -1 && this.checkhidden(fullpath));
 };
