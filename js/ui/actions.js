@@ -102,13 +102,13 @@
          */
         api.finder.on("error", function () {
             alert("Oops. Looks like your device does not support Finder.");
-            api.ui_enable;
+            api.ui_enable();
             resetbtn_action();
         });
 
         api.finder.on("empty", function () {
             alert("Oops. Your device does not have any storage to search from.");
-            api.ui_enable;
+            api.ui_enable();
             resetbtn_action();
         });
 
