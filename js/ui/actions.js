@@ -102,17 +102,13 @@
          */
         api.finder.on("error", function () {
             alert("Oops. Looks like your device does not support Finder.");
-            $(api.args.resetbtn).removeAttribute("disabled");
-            $(api.args.searchbtn).removeAttribute("disabled");
-            $(api.args.searchinput).removeAttribute("disabled");
+            api.ui_enable;
             resetbtn_action();
         });
 
         api.finder.on("empty", function () {
             alert("Oops. Your device does not have any storage to search from.");
-            $(api.args.resetbtn).removeAttribute("disabled");
-            $(api.args.searchbtn).removeAttribute("disabled");
-            $(api.args.searchinput).removeAttribute("disabled");
+            api.ui_enable;
             resetbtn_action();
         });
 

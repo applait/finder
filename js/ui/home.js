@@ -10,9 +10,7 @@
 
         api.finder.on("searchBegin", function (key) {
             $("#home section").innerHTML = riot.render($("#tmpl-loading").innerHTML.trim(), { searchkey: key });
-            $(api.args.resetbtn).setAttribute("disabled", true);
-            $(api.args.searchbtn).setAttribute("disabled", true);
-            $(api.args.searchinput).setAttribute("disabled", true);
+            api.ui_disable();
         });
 
         api.on("resultsFound", function () {
@@ -40,15 +38,11 @@
         });
 
         api.finder.on("searchCancelled", function() {
-            $(api.args.resetbtn).removeAttribute("disabled");
-            $(api.args.searchbtn).removeAttribute("disabled");
-            $(api.args.searchinput).removeAttribute("disabled");
+            api.ui_enable();
         });
 
         api.finder.on("searchComplete", function() {
-            $(api.args.resetbtn).removeAttribute("disabled");
-            $(api.args.searchbtn).removeAttribute("disabled");
-            $(api.args.searchinput).removeAttribute("disabled");
+            api.ui_enable();
         });
 
         api.on("noResults", function (key) {

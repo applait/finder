@@ -44,6 +44,18 @@ var FinderModel = function (arg) {
         self.finder.reset();
     };
 
+    self.ui_disable = function () {
+        $(arg.resetbtn).setAttribute("disabled", true);
+        $(arg.searchbtn).setAttribute("disabled", true);
+        $(arg.searchinput).setAttribute("disabled", true);
+    };
+
+    self.ui_enable = function () {
+        $(arg.resetbtn).removeAttribute("disabled");
+        $(arg.searchbtn).removeAttribute("disabled");
+        $(arg.searchinput).removeAttribute("disabled");
+    };
+
     /**
      * Initiate search
      *
