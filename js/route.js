@@ -9,11 +9,16 @@
         // element has "data-goto" attribute beginning with "#/".
         api.args.root.addEventListener("click", function (e) {
 
-            var goto = e.target && e.target.dataset && e.target.dataset.goto;
+            var target = e.target;
+            
+            while(typeof target.dataset.goto === "undefined") {
+                target = target.parentNode;
+            }
+
+            var goto = target.dataset.goto;
 
             if (goto && goto.indexOf("#/") === 0) {
                 e.preventDefault();
-
                 riot.route(goto);
             } else if (goto && goto === "back") {
                 api.pushhistory = false;
@@ -21,7 +26,7 @@
             }
 
             // Memory cleanup
-            goto = null;
+            goto = target = null;
 
         }, false);
 
