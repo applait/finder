@@ -15,6 +15,11 @@ html {
   outline:none;
 }
 
+:disabled {
+  opacity: 0.3;
+  color: #d3d3d3;
+}
+
 ::-moz-focus-inner {
   border:0;
 }
