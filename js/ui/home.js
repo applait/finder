@@ -8,11 +8,6 @@
             $(api.args.searchinput) && $(api.args.searchinput).focus();
         });
 
-        api.finder.on("searchBegin", function (key) {
-            $("#home section").innerHTML = riot.render($("#tmpl-loading").innerHTML.trim(), { searchkey: key });
-            api.ui_disable();
-        });
-
         api.on("resultsFound", function () {
 
             var itemtmpl = $("#tmpl-searchresult-item").innerHTML.trim(),
@@ -35,14 +30,6 @@
 
             // Memory cleanup
             itemtmpl = listtmpl = searchresults = null;
-        });
-
-        api.finder.on("searchCancelled", function() {
-            api.ui_enable();
-        });
-
-        api.finder.on("searchComplete", function() {
-            api.ui_enable();
         });
 
         api.on("noResults", function (key) {

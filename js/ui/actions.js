@@ -112,5 +112,21 @@
             resetbtn_action();
         });
 
+        /**
+         * Handle actions per search stage
+         */
+        api.finder.on("searchBegin", function (key) {
+            $("#home section").innerHTML = riot.render($("#tmpl-loading").innerHTML.trim(), { searchkey: key });
+            api.ui_disable();
+        });
+
+        api.finder.on("searchCancelled", function() {
+            api.ui_enable();
+        });
+
+        api.finder.on("searchComplete", function() {
+            api.ui_enable();
+        });
+
     });
 })();
