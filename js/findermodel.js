@@ -56,7 +56,6 @@ var FinderModel = function (arg) {
     /**
      * Enable the reset button, search button, search input
      */
-
     self.ui_enable = function () {
         $(arg.resetbtn).removeAttribute("disabled");
         $(arg.searchbtn).removeAttribute("disabled");
