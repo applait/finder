@@ -10,12 +10,12 @@
         api.args.root.addEventListener("click", function (e) {
 
             var target = e.target;
-            
-            while(typeof target.dataset.goto === "undefined") {
+
+            while(target.dataset && typeof target.dataset.goto === "undefined") {
                 target = target.parentNode;
             }
 
-            var goto = target.dataset.goto;
+            var goto = target.dataset && target.dataset.goto;
 
             if (goto && goto.indexOf("#/") === 0) {
                 e.preventDefault();
