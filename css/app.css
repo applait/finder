@@ -17,6 +17,7 @@ html {
 
 :disabled {
   -moz-opacity: 0.75;
+  opacity: 0.75;
   color: #d3d3d3;
 }
 
@@ -242,6 +243,7 @@ article {
   left: 0;
   background: #ffffff;
   -moz-opacity: 0;
+  opacity: 0;
   z-index: 0;
   transform: translate3d(105%, 0, 0);
   transition: transform 0.5s, opacity 0.25s linear;
@@ -299,6 +301,7 @@ section {
 .active-view {
   transform: translate3d(0, 0, 0);
   -moz-opacity: 1;
+  opacity: 1;
   z-index: 1;
 }
 
