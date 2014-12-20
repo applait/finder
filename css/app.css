@@ -156,6 +156,10 @@ nav #resetbtn {
   flex-grow: 1;
 }
 
+.no-flexbox #resetbtn {
+  width: 80%;
+}
+
 #topnav {
   top: 0;
   border-top: 0.2rem solid #2ecc71;
@@ -252,6 +256,7 @@ article {
   height: calc(100vh - 3rem);
 }
 
+
 .has-bottomnav article {
   bottom: 3rem;
   height: calc(100vh - 3rem);
@@ -307,6 +312,10 @@ section {
   flex-direction: column;
 }
 
+.no-flexbox #searchresults {
+  width: 100%;
+}
+
 .searchresult-item {
   display: -moz-box;
   display: flex;
@@ -335,6 +344,10 @@ section {
   flex-basis: 2rem;
 }
 
+.no-flexbox .searchresult-item button {
+  width: 100%;
+}
+
 .button-strip {
   display: -moz-box;
   display: flex;
@@ -344,6 +357,10 @@ section {
   justify-content: center;
   align-items: stretch;
   align-content: center;
+}
+
+.no-flexbox .button-strip {
+  width: 100%;
 }
 
 .button-strip button {
@@ -361,6 +378,10 @@ section {
   -moz-box-orient: vertical;
   flex-direction: column;
   border: 1px solid #cccccc;
+}
+
+.no-flexbox .list {
+  width: 100%;
 }
 
 .list > li {
