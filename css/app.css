@@ -243,6 +243,10 @@ article {
   transition: transform 0.5s, opacity 0.25s linear;
 }
 
+.no-flexbox article {
+  width: 100%;
+}
+
 .has-topnav article {
   top: 3rem;
   height: calc(100vh - 3rem);
