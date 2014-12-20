@@ -111,9 +111,13 @@ a, a:visited {
  * Nav elements
  */
 nav {
+  display: -moz-box;
   display: flex;
+  -moz-box-orient: horizontal;
   flex-flow: row nowrap;
+  -moz-box-align: center;
   justify-content: space-between;
+  -moz-box-pack: center;
   align-items: center;
   align-content: center;
   overflow: hidden;
@@ -137,6 +141,7 @@ nav h1 {
   margin: 0;
   padding: 0;
   font-size: 1.25rem;
+  -moz-box-flex: 1;
   flex-grow: 1;
   text-indent: 1rem;
   line-height: 3rem;
@@ -147,6 +152,7 @@ nav button:hover, nav button:focus {
 }
 
 nav #resetbtn {
+  -moz-box-flex: 1;
   flex-grow: 1;
 }
 
@@ -166,11 +172,16 @@ nav #resetbtn {
 
 #topnav > h1, #topnav > form, #topnav > input[type="text"] {
   width: 100%;
+  -moz-box-flex: 1;
   flex-grow: 1;
 }
 
+.no-flexbox #topnav > h1, .no-flexbox #topnav > form, .no-flexbox #topnav > input[type="text"] {
+  width: 80%;
+  float: left;
+}
+
 #topnav input[type="text"] {
-  width: 100%;
   border: none;
   outline: none;
   padding: 0;
@@ -183,6 +194,10 @@ nav #resetbtn {
   width: 4rem;
   text-align: right;
   color: #ffffff;
+}
+
+.no-flexbox #topnav button {
+  width: 20%;
 }
 
 #topnav button:focus {
@@ -210,7 +225,9 @@ nav #resetbtn {
  * Content area
  */
 article {
+  display: -moz-box;
   display: flex;
+  -moz-box-orient: vertical;
   flex-flow: column nowrap;
   width: 100vw;
   height: 100vh;
@@ -243,6 +260,7 @@ article {
 }
 
 section {
+  -moz-box-flex: 1;
   flex: 1 0 0%;
   width: 100%;
   overflow-x: hidden;
@@ -279,12 +297,16 @@ section {
  * Search results
  */
 #searchresults {
+  display: -moz-box;
   display: flex;
+  -moz-box-orient: vertical;
   flex-direction: column;
 }
 
 .searchresult-item {
+  display: -moz-box;
   display: flex;
+  -moz-box-orient: horizontal;
   flex-direction: row;
   justify-content: space-between;
   align-items: stretch;
@@ -298,6 +320,7 @@ section {
 }
 
 .searchresult-item h3 {
+  -moz-box-flex: 1;
   flex-grow: 1;
   word-wrap: break-word;
 }
@@ -309,8 +332,11 @@ section {
 }
 
 .button-strip {
+  display: -moz-box;
   display: flex;
+  -moz-box-orient: horizontal;
   flex-flow: row wrap;
+  -moz-box-pack: center;
   justify-content: center;
   align-items: stretch;
   align-content: center;
@@ -322,11 +348,13 @@ section {
 }
 
 .list {
+  display: -moz-box;
+  display: flex;
   list-style-type: none;
   list-style-image: none;
   margin: 1rem 0;
   padding: 0;
-  display: flex;
+  -moz-box-orient: vertical;
   flex-direction: column;
   border: 1px solid #cccccc;
 }
