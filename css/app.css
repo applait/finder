@@ -426,3 +426,10 @@ section {
 .has-padding {
   padding: 1rem;
 }
+
+/**
+ * Weird fixes
+ */
+template {
+  display: none;
+}
