@@ -182,7 +182,7 @@ nav #resetbtn {
 }
 
 .no-flexbox #topnav > h1, .no-flexbox #topnav > form, .no-flexbox #topnav > input[type="text"] {
-  width: 80%;
+  width: calc(100% - 4rem);
   float: left;
 }
 
@@ -199,10 +199,6 @@ nav #resetbtn {
   width: 4rem;
   text-align: right;
   color: #ffffff;
-}
-
-.no-flexbox #topnav button {
-  width: 20%;
 }
 
 #topnav button:focus {
