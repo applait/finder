@@ -16,6 +16,7 @@ html {
 }
 
 :disabled {
+  -moz-opacity: 0.75;
   opacity: 0.75;
   color: #d3d3d3;
 }
@@ -156,6 +157,10 @@ nav #resetbtn {
   flex-grow: 1;
 }
 
+.no-flexbox #resetbtn {
+  width: 80%;
+}
+
 #topnav {
   top: 0;
   border-top: 0.2rem solid #2ecc71;
@@ -237,6 +242,7 @@ article {
   top: 0;
   left: 0;
   background: #ffffff;
+  -moz-opacity: 0;
   opacity: 0;
   z-index: 0;
   transform: translate3d(105%, 0, 0);
@@ -251,6 +257,7 @@ article {
   top: 3rem;
   height: calc(100vh - 3rem);
 }
+
 
 .has-bottomnav article {
   bottom: 3rem;
@@ -293,6 +300,7 @@ section {
 
 .active-view {
   transform: translate3d(0, 0, 0);
+  -moz-opacity: 1;
   opacity: 1;
   z-index: 1;
 }
@@ -305,6 +313,10 @@ section {
   display: flex;
   -moz-box-orient: vertical;
   flex-direction: column;
+}
+
+.no-flexbox #searchresults {
+  width: 100%;
 }
 
 .searchresult-item {
@@ -335,6 +347,10 @@ section {
   flex-basis: 2rem;
 }
 
+.no-flexbox .searchresult-item button {
+  width: 100%;
+}
+
 .button-strip {
   display: -moz-box;
   display: flex;
@@ -344,6 +360,10 @@ section {
   justify-content: center;
   align-items: stretch;
   align-content: center;
+}
+
+.no-flexbox .button-strip {
+  width: 100%;
 }
 
 .button-strip button {
@@ -361,6 +381,10 @@ section {
   -moz-box-orient: vertical;
   flex-direction: column;
   border: 1px solid #cccccc;
+}
+
+.no-flexbox .list {
+  width: 100%;
 }
 
 .list > li {
