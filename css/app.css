@@ -242,7 +242,7 @@ article {
   opacity: 0;
   z-index: 0;
   transform: translate3d(105%, 0, 0);
-  transition: transform 0.5s, opacity 0.25s linear;
+  transition: transform 0.5s ease-out;
 }
 
 .no-flexbox article {
