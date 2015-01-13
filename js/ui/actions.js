@@ -4,7 +4,7 @@
     app(function (api) {
 
         /**
-         * Actions to perform when reset button is touched
+         * Actions to perform when reset button is pressed
          */
         var resetbtn_action = function () {
             var searchinput = $(api.args.searchinput);
@@ -32,14 +32,14 @@
         };
 
         /**
-         * Actions to perform when search button is touched
+         * Actions to perform when search button is pressed
          */
         var searchbtn_action = function () {
             api.search($(api.args.searchinput).value.trim());
         };
 
         /**
-         * Actions to perform when cancel button is touched
+         * Actions to perform when cancel button is pressed
          */
         var cancelbtn_action = function () {
             api.activityRequest && api.activityRequest.postError("Pick cancelled.");

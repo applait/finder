@@ -5,7 +5,7 @@
     app(function (api) {
 
         // Add a delegated event listener to the root element defined by the app init.
-        // This listens to all touches and triggers riot.route(TO) only if the target
+        // This listens to all touch events and triggers riot.route(TO) only if the target
         // element has "data-goto" attribute beginning with "#/".
         api.args.root.addEventListener("touchend", function (e) {
 
