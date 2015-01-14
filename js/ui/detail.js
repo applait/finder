@@ -19,7 +19,7 @@
             });
 
             // Preview button handler
-            $("#previewbtn") && $("#previewbtn").addEventListener("click", function (e) {
+            $("#previewbtn") && $("#previewbtn").addEventListener("touchend", function (e) {
                 e.preventDefault();
 
                 var result = api.searchResults[e.target.dataset.index];
@@ -42,7 +42,7 @@
             }, false);
 
             // Share button handler
-            $("#sharebtn") && $("#sharebtn").addEventListener("click", function (e) {
+            $("#sharebtn") && $("#sharebtn").addEventListener("touchend", function (e) {
                 e.preventDefault();
 
                 var result = api.searchResults[e.target.dataset.index];
@@ -64,7 +64,7 @@
             }, false);
 
             // Pick button handler
-            $("#pickbtn") && $("#pickbtn").addEventListener("click", function (e) {
+            $("#pickbtn") && $("#pickbtn").addEventListener("touchend", function (e) {
                 e.preventDefault();
 
                 var result = api.searchResults[e.target.dataset.index];
