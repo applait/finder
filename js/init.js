@@ -11,8 +11,10 @@ window.addEventListener("DOMContentLoaded", function () {
         resetbtn: "#resetbtn",
         pickbtn: "#pickbtn",
         searchform: "#searchform",
-        debug: false,
-        activityRequest: false
+        activityRequest: false,
+        debug: (localStorage.getItem("finderDebug") ? true : false),
+        caseSensitive: (localStorage.getItem("finderCase") ? true : false),
+        hiddenFiles: (localStorage.getItem("finderHidden") ? true : false)
     };
 
     // If current request is a web activity, handle it
