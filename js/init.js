@@ -12,9 +12,9 @@ window.addEventListener("DOMContentLoaded", function () {
         pickbtn: "#pickbtn",
         searchform: "#searchform",
         activityRequest: false,
-        debug: (localStorage.getItem("finderDebug") ? true : false),
-        caseSensitive: (localStorage.getItem("finderCase") ? true : false),
-        hiddenFiles: (localStorage.getItem("finderHidden") ? true : false)
+        debug: localStorage.getItem("finderDebug") ? localStorage.getItem("finderDebug") : false
+        // caseSensitive: localStorage.getItem("finderCase") ? localStorage.getItem("finderCase") : false,
+        // hiddenFiles: localStorage.getItem("finderHidden") ? localStorage.getItem("finderHidden") : false
     };
 
     // If current request is a web activity, handle it
@@ -31,3 +31,5 @@ window.addEventListener("DOMContentLoaded", function () {
     }
 
 });
+
+

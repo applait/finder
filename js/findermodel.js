@@ -20,7 +20,9 @@ var FinderModel = function (arg) {
     self.finder = new Applait.Finder({
         type: "sdcard",
         minSearchLength: 2,
-        debugMode: arg.debug
+        debugMode: arg.debug,
+        //casesensitive: arg.caseSensitive,
+        //hidden : arg.hiddenFiles
     });
 
     // Current search results
