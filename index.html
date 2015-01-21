@@ -8,10 +8,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 
         <script type="text/javascript" src="js/libs/modernizr.js"></script>
-        
+
         <link rel="stylesheet" type="text/css" href="css/fontello/css/animation.css">
         <link rel="stylesheet" type="text/css" href="css/fontello/css/iconpack.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
+        <!-- <link rel="stylesheet" type="text/css" href="css/switches.css"> -->
     </head>
 
     <body class="has-topnav has-bottomnav">
@@ -24,7 +25,7 @@
         </article>
 
         <!-- About view -->
-        <article id="about" class="slide-right">
+        <article id="about1" class="slide-right">
             <section class="has-padding">
                 <h2>About</h2>
                 <p>A file search app for Firefox OS.</p>
@@ -49,6 +50,46 @@
                         Firefox Marketplace
                     </a>.
                 </p>
+
+            </section>
+        </article>
+
+        <!-- Preferences View -->
+        <article id="about" class="slide-right">
+            <section class="has-padding">
+            <h2>Preferences</h2>
+
+            <input type="checkbox" checked id="debugToggle" name="debug_toggle">
+            <label for="debugToggle">Debug</label>
+
+            <input type="checkbox" checked id="caseToggle" name="case_toggle">
+            <label for="caseToggle">Case</label>
+
+            <input type="checkbox" checked id="hiddenToggle" name="hidden_toggle">
+            <label for="hiddenToggle">Hidden</label>
+
+            <a href="index.html"> save </a>
+
+            <!-- <div id="caseSensitive">
+                <label class="pack-switch" name="switch">
+                    <input type="checkbox" checked>
+                    <span>Case Sensitive</span>
+                </label>
+            </div>
+
+            <div id="hiddenFiles">
+                <label class="pack-switch" name="switch">
+                    <input type="checkbox" checked>
+                    <span>Hidden Files Check</span>
+                </label>
+            </div>
+
+            <div id="debugToggle">
+                <label class="pack-switch">
+                    <input type="checkbox" checked>
+                    <span>Debug</span>
+                </label>
+            </div> -->
 
             </section>
         </article>

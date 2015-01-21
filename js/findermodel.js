@@ -21,8 +21,8 @@ var FinderModel = function (arg) {
         type: "sdcard",
         minSearchLength: 2,
         debugMode: arg.debug,
-        //casesensitive: arg.caseSensitive,
-        //hidden : arg.hiddenFiles
+        caseSensitive: arg.caseSensitive,
+        hidden: arg.hiddenFiles
     });
 
     // Current search results
