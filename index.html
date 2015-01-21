@@ -12,7 +12,7 @@
         <link rel="stylesheet" type="text/css" href="css/fontello/css/animation.css">
         <link rel="stylesheet" type="text/css" href="css/fontello/css/iconpack.css">
         <link rel="stylesheet" type="text/css" href="css/app.css">
-        <!-- <link rel="stylesheet" type="text/css" href="css/switches.css"> -->
+        <link rel="stylesheet" type="text/css" href="css/switches.css">
     </head>
 
     <body class="has-topnav has-bottomnav">
@@ -59,37 +59,22 @@
             <section class="has-padding">
             <h2>Preferences</h2>
 
-            <input type="checkbox" checked id="debugToggle" name="debug_toggle">
-            <label for="debugToggle">Debug</label>
+            <div class="switch">
+                <input type="checkbox" checked id="debugToggle" class="cmn-toggle cmn-toggle-round" name="debug_toggle">
+                <label for="debugToggle">Debug Mode</label>
+            </div> <br>
 
-            <input type="checkbox" checked id="caseToggle" name="case_toggle">
-            <label for="caseToggle">Case</label>
+            <div class="switch wrap">
+                <input type="checkbox" checked id="caseToggle" class="cmn-toggle cmn-toggle-round" name="debug_toggle">
+                <label for="caseToggle">Case Sensitive</label>
+            </div> <br>
 
-            <input type="checkbox" checked id="hiddenToggle" name="hidden_toggle">
-            <label for="hiddenToggle">Hidden</label>
+            <div class="switch">
+            <input type="checkbox" checked id="hiddenToggle" class="cmn-toggle cmn-toggle-round" name="debug_toggle">
+            <label for="hiddenToggle">Hidden Mode</label>
+            </div> <br>
 
-            <a href="index.html"> save </a>
-
-            <!-- <div id="caseSensitive">
-                <label class="pack-switch" name="switch">
-                    <input type="checkbox" checked>
-                    <span>Case Sensitive</span>
-                </label>
-            </div>
-
-            <div id="hiddenFiles">
-                <label class="pack-switch" name="switch">
-                    <input type="checkbox" checked>
-                    <span>Hidden Files Check</span>
-                </label>
-            </div>
-
-            <div id="debugToggle">
-                <label class="pack-switch">
-                    <input type="checkbox" checked>
-                    <span>Debug</span>
-                </label>
-            </div> -->
+            <a href="index.html" class="button"/>Save</a>
 
             </section>
         </article>

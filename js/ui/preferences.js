@@ -43,8 +43,8 @@
             }
         }, false);
 
-        //Memory Cleanup
-        // debug_pref = case_pref = hidden_pref = null;
+        // Memory Cleanup
+        debug_pref = case_pref = hidden_pref = null;
 
 
         });

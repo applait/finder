@@ -1,82 +1,58 @@
-/* ----------------------------------
- * CHECKBOXES / RADIOS
- * ---------------------------------- */
-
-label.pack-switch {
-  display: inline-block;
-  vertical-align: middle;
-  width: 5rem;
-  height: 5rem;
-  position: relative;
-  background: none;
+.cmn-toggle {
+    position: absolute;
+    margin-left: -9999px;
+    visibility: hidden;
 }
 
-label.pack-switch input {
-  margin: 0;
-  opacity: 0;
-  position: absolute;
-  top: 0;
-  left: 0;
+.cmn-toggle + label {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    outline: none;
+    user-select: none;
 }
 
-label.pack-switch input:checked ~ span:after {
-  background-position: center bottom;
+input.cmn-toggle-round + label {
+    padding: 2px;
+    width: 80px;
+    height: 40px;
+    background-color: #dddddd;
+    border-radius: 40px;
+}
+input.cmn-toggle-round + label:before,
+input.cmn-toggle-round + label:after {
+    display: block;
+    position: absolute;
+    top: 1px;
+    left: 1px;
+    bottom: 1px;
+    content: "";
+}
+input.cmn-toggle-round + label:before {
+    right: 1px;
+    background-color: #f1f1f1;
+    border-radius: 60px;
+    transition: background 0.4s;
+}
+input.cmn-toggle-round + label:after {
+    width: 40px;
+    background-color: #fff;
+    border-radius: 100%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    transition: margin 0.4s;
+}
+input.cmn-toggle-round:checked + label:before {
+    background-color: #2dc86f;
+}
+input.cmn-toggle-round:checked + label:after {
+    margin-left: 38px;
 }
 
-/* ----------------------------------
- * ON/OFF SWITCHES
- * ---------------------------------- */
-
-label.pack-switch input ~ span:after {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 50%;
-  width: 6rem;
-  margin: -1.4rem 0 0;
-  height: 2.7rem;
-  pointer-events: none;
-  border-radius: 1.35rem;
-  overflow: hidden;
-  background: #e6e6e6 url(img/switches/background_off.png) no-repeat -3.2rem 0 / 9.2rem 2.7rem;
-  transition: background 0.2s ease;
+.button{
+    text-decoration:none; text-align:center;
+    padding:11px 32px;
+    border:none;
+    border-radius: 4px;
+    font-color:#ffffff;
+    background:#2dc870;
 }
-
-/* switch: 'ON' state */
-label.pack-switch input:checked ~ span:after {
-  background: #e6e6e6 url(img/switches/background.png) no-repeat 0 0 / 9.2rem 2.7rem;
-}
-
-/* switch: disabled state */
-label.pack-switch input:disabled ~ span:after {
-  opacity: 0.4;
-}
-
-label.pack-switch input.uninit ~ span:after {
-  transition: none;
-}
-
-/******************************************************************************
- * Right-To-Left tweaks
- */
-
-html[dir="rtl"] label.pack-switch input {
-  left: auto;
-  right: 0;
-}
-
-html[dir="rtl"] label.pack-switch input ~ span:after {
-  left: 0;
-  right: auto;
-}
-
-html[dir="rtl"] label.pack-switch input ~ span:after {
-  background-position: 0;
-}
-
-/* switch: 'ON' state */
-html[dir="rtl"] label.pack-switch input:checked ~ span:after {
-  background-image: url(img/switches/background_rtl.png);
-  background-position: -3.2rem 0;
-}
-
