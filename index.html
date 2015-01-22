@@ -25,7 +25,7 @@
         </article>
 
         <!-- About view -->
-        <article id="about1" class="slide-right">
+        <article id="about" class="slide-right">
             <section class="has-padding">
                 <h2>About</h2>
                 <p>A file search app for Firefox OS.</p>
@@ -51,30 +51,20 @@
                     </a>.
                 </p>
 
-            </section>
-        </article>
+                <h3>Preferences</h3>
 
-        <!-- Preferences View -->
-        <article id="about" class="slide-right">
-            <section class="has-padding">
-            <h2>Preferences</h2>
+                <div class="switch">
+                    <input type="checkbox" checked id="debugToggle" class="cmn-toggle cmn-toggle-round" name="debug_toggle">
+                    <label for="debugToggle">Debug Mode</label> <br>
 
-            <div class="switch">
-                <input type="checkbox" checked id="debugToggle" class="cmn-toggle cmn-toggle-round" name="debug_toggle">
-                <label for="debugToggle">Debug Mode</label>
-            </div> <br>
+                    <input type="checkbox" checked id="caseToggle" class="cmn-toggle cmn-toggle-round" name="case_toggle">
+                    <label for="caseToggle">Case Sensitive</label> <br>
 
-            <div class="switch wrap">
-                <input type="checkbox" checked id="caseToggle" class="cmn-toggle cmn-toggle-round" name="debug_toggle">
-                <label for="caseToggle">Case Sensitive</label>
-            </div> <br>
+                    <input type="checkbox" checked id="hiddenToggle" class="cmn-toggle cmn-toggle-round" name="hidden_toggle">
+                    <label for="hiddenToggle">Hidden Mode</label> <br>
+                </div> <br>
 
-            <div class="switch">
-            <input type="checkbox" checked id="hiddenToggle" class="cmn-toggle cmn-toggle-round" name="debug_toggle">
-            <label for="hiddenToggle">Hidden Mode</label>
-            </div> <br>
-
-            <a href="index.html" class="button"/>Save</a>
+                <a href="index.html" class="button"/>Save</a>
 
             </section>
         </article>

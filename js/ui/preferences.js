@@ -5,19 +5,19 @@
         api.on("load:about", function () {
 
         var debug_pref = $("#debugToggle");
-        !!parseInt(localStorage.getItem("finderDebug")) ?
-        (debug_pref.checked = true) :
-        (debug_pref.checked = false);
+            !!parseInt(localStorage.getItem("finderDebug")) ?
+                (debug_pref.checked = true) :
+                (debug_pref.checked = false);
 
         var case_pref = $("#caseToggle");
-        !!parseInt(localStorage.getItem("finderCase")) ?
-        (case_pref.checked = true) :
-        (case_pref.checked = false);
+            !!parseInt(localStorage.getItem("finderCase")) ?
+                (case_pref.checked = true) :
+                (case_pref.checked = false);
 
         var hidden_pref = $("#hiddenToggle");
-        !!parseInt(localStorage.getItem("finderHidden")) ?
-        (hidden_pref.checked = true) :
-        (hidden_pref.checked = false);
+            !!parseInt(localStorage.getItem("finderHidden")) ?
+                (hidden_pref.checked = true) :
+                (hidden_pref.checked = false);
 
         debug_pref.addEventListener("click", function () {
             if (debug_pref.checked) {
@@ -46,9 +46,7 @@
         // Memory Cleanup
         debug_pref = case_pref = hidden_pref = null;
 
-
         });
-
     });
 
 })();
