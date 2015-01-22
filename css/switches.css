@@ -1,3 +1,13 @@
+.switch-column {
+    display: -moz-box;
+    display: flex;
+    -moz-box-orient: vertical;
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-top: -12px;
+    margin-bottom: 10px;
+}
+
 input.switch:empty {
     margin-left: -999px;
 }
@@ -7,7 +17,7 @@ input.switch:empty ~ label {
     float: left;
     line-height: 1.6em;
     text-indent: 4em;
-    margin: 0.2em 0;
+    margin: 0.2em 0 -5px;
     cursor: pointer;
     user-select: none;
 }
@@ -42,8 +52,4 @@ input.switch:checked ~ label:before {
 
 input.switch:checked ~ label:after {
     margin-left: 2em;
-}
-
-#hiddenToggle {
-    margin-bottom: 50px;
 }
