@@ -1,10 +1,8 @@
-input.switch:empty
-{
+input.switch:empty {
     margin-left: -999px;
 }
 
-input.switch:empty ~ label
-{
+input.switch:empty ~ label {
     position: relative;
     float: left;
     line-height: 1.6em;
@@ -15,8 +13,7 @@ input.switch:empty ~ label
 }
 
 input.switch:empty ~ label:before,
-input.switch:empty ~ label:after
-{
+input.switch:empty ~ label:after {
     position: absolute;
     display: block;
     top: 0;
@@ -30,8 +27,7 @@ input.switch:empty ~ label:after
     transition: all 100ms ease-in;
 }
 
-input.switch:empty ~ label:after
-{
+input.switch:empty ~ label:after {
     width: 1.4em;
     top: 0.1em;
     bottom: 0.1em;
@@ -40,13 +36,11 @@ input.switch:empty ~ label:after
 
 }
 
-input.switch:checked ~ label:before
-{
+input.switch:checked ~ label:before {
     background-color: #2DC86E;
 }
 
-input.switch:checked ~ label:after
-{
+input.switch:checked ~ label:after {
     margin-left: 2em;
 }
 
