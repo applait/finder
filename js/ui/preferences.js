@@ -11,6 +11,7 @@
             !!parseInt(localStorage.getItem("finderDebug")) ?
                 (debug_pref.checked = true) :
                 (debug_pref.checked = false);
+
             !!parseInt(localStorage.getItem("finderCase")) ?
                 (case_pref.checked = true) :
                 (case_pref.checked = false);
