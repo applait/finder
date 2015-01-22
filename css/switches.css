@@ -36,7 +36,7 @@ input.switch:empty ~ label:after
     top: 0.1em;
     bottom: 0.1em;
     margin-left: 0.1em;
-    background-color: #000000;
+    background-color: #27AE60;
 
 }
 
@@ -48,4 +48,8 @@ input.switch:checked ~ label:before
 input.switch:checked ~ label:after
 {
     margin-left: 2em;
+}
+
+#hiddenToggle {
+    margin-bottom: 50px;
 }
