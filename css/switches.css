@@ -1,58 +1,51 @@
-.cmn-toggle {
-    position: absolute;
-    margin-left: -9999px;
-    visibility: hidden;
+input.switch:empty
+{
+    margin-left: -999px;
 }
 
-.cmn-toggle + label {
-    display: block;
+input.switch:empty ~ label
+{
     position: relative;
+    float: left;
+    line-height: 1.6em;
+    text-indent: 4em;
+    margin: 0.2em 0;
     cursor: pointer;
-    outline: none;
     user-select: none;
 }
 
-input.cmn-toggle-round + label {
-    padding: 2px;
-    width: 80px;
-    height: 40px;
-    background-color: #dddddd;
-    border-radius: 40px;
-}
-input.cmn-toggle-round + label:before,
-input.cmn-toggle-round + label:after {
-    display: block;
+input.switch:empty ~ label:before,
+input.switch:empty ~ label:after
+{
     position: absolute;
-    top: 1px;
-    left: 1px;
-    bottom: 1px;
-    content: "";
-}
-input.cmn-toggle-round + label:before {
-    right: 1px;
-    background-color: #f1f1f1;
-    border-radius: 60px;
-    transition: background 0.4s;
-}
-input.cmn-toggle-round + label:after {
-    width: 40px;
-    background-color: #fff;
-    border-radius: 100%;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
-    transition: margin 0.4s;
-}
-input.cmn-toggle-round:checked + label:before {
-    background-color: #2dc86f;
-}
-input.cmn-toggle-round:checked + label:after {
-    margin-left: 38px;
+    display: block;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    content: ' ';
+    width: 3.6em;
+    background-color: #FFFFFF;
+    border-radius: 0.3em;
+    box-shadow: inset 0 0.2em 0 rgba(0,0,0,0.1);
+    transition: all 100ms ease-in;
 }
 
-.button{
-    text-decoration:none; text-align:center;
-    padding:11px 32px;
-    border:none;
-    border-radius: 4px;
-    font-color:#ffffff;
-    background:#2dc870;
+input.switch:empty ~ label:after
+{
+    width: 1.4em;
+    top: 0.1em;
+    bottom: 0.1em;
+    margin-left: 0.1em;
+    background-color: #000000;
+
+}
+
+input.switch:checked ~ label:before
+{
+    background-color: #2DC86E;
+}
+
+input.switch:checked ~ label:after
+{
+    margin-left: 2em;
 }
