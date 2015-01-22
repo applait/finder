@@ -22,8 +22,10 @@
 
             debug_pref.addEventListener("click", function () {
                 if (this.checked) {
+                    api.finder.debugmode = true;
                     localStorage.setItem("finderDebug", "1");
                 } else {
+                    api.finder.debugmode = false;
                     localStorage.setItem("finderDebug", "0");
                 }
                 console.log(localStorage.getItem("finderDebug"));
@@ -31,16 +33,20 @@
 
             case_pref.addEventListener("click", function () {
                 if (this.checked) {
+                    api.finder.casesensitive = true;
                     localStorage.setItem("finderCase", "1");
                 } else {
+                    api.finder.casesensitive = false;
                     localStorage.setItem("finderCase", "0");
                 }
             }, false);
 
             hidden_pref.addEventListener("click", function () {
                 if (this.checked) {
+                    api.finder.hidden = true;
                     localStorage.setItem("finderHidden", "1");
                 } else {
+                    api.finder.hidden = false;
                     localStorage.setItem("finderHidden", "0");
                 }
             }, false);
