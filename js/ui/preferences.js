@@ -21,15 +21,16 @@
                 (hidden_pref.checked = false);
 
             debug_pref.addEventListener("click", function () {
-                if (debug_pref.checked) {
+                if (this.checked) {
                     localStorage.setItem("finderDebug", "1");
                 } else {
                     localStorage.setItem("finderDebug", "0");
                 }
+                console.log(localStorage.getItem("finderDebug"));
             }, false);
 
             case_pref.addEventListener("click", function () {
-                if (case_pref.checked) {
+                if (this.checked) {
                     localStorage.setItem("finderCase", "1");
                 } else {
                     localStorage.setItem("finderCase", "0");
@@ -37,7 +38,7 @@
             }, false);
 
             hidden_pref.addEventListener("click", function () {
-                if (hidden_pref.checked) {
+                if (this.checked) {
                     localStorage.setItem("finderHidden", "1");
                 } else {
                     localStorage.setItem("finderHidden", "0");
