@@ -28,7 +28,6 @@
                     api.finder.debugmode = false;
                     localStorage.setItem("finderDebug", "0");
                 }
-                console.log(localStorage.getItem("finderDebug"));
             }, false);
 
             case_pref.addEventListener("click", function () {
